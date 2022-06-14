@@ -21,7 +21,6 @@ public class RequestInvestimento {
 	@NotBlank
 	@Getter @Setter private String atuacao;
 	
-	@NotBlank
 	@Getter @Setter private String descricao;
 	
 	public Investimento toInvestimento() {

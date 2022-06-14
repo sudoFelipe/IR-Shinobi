@@ -40,9 +40,12 @@ public class InvestimentoController {
 		
 		modelo.addAttribute("usuario", usu);
 		
-		Investimento invest = requisicao.toInvestimento();
-		
-		investimentoRepo.save(invest);
+		if (!resultado.hasErrors()) {
+			
+			Investimento invest = requisicao.toInvestimento();
+			
+			investimentoRepo.save(invest);
+		}
 
 		List<Investimento> lsInvestimentos = investimentoRepo.findAll();
 		

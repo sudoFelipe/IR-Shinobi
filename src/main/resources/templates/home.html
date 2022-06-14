@@ -91,22 +91,25 @@
 	
 									<div class="mb-3">
 										<label for="nome" class="col-form-label">Investimento:</label>
-										<input name="nome" class="form-control"></input>
+										<input th:field="*{nome}" class="form-control" th:errorclass="is-invalid" placeholder="Nome do investimento (ativo)" ></input>
+										<div th:errors="*{nome}" class="invalid-feedback"/>
 									</div>
 									
 									<div class="mb-3">
 										<label for="sigla" class="col-form-label">Sigla:</label>
-										<input name="sigla" class="form-control" id="sigla"></input>
+										<input th:field="*{sigla}" class="form-control" th:errorclass="is-invalid" placeholder="Sigla do ativo"></input>
+										<div th:errors="*{sigla}" class="invalid-feedback"/>
 									</div>
 									
 									<div class="mb-3">
 										<label for="atuacao" class="col-form-label">Atuação:</label>
-										<input name="atuacao" class="form-control" id="atuacao"></input>
+										<input th:field="*{atuacao}" class="form-control" th:errorclass="is-invalid" placeholder="Ramo de atuação do ativo"></input>
+										<div th:errors="*{atuacao}" class="invalid-feedback"/>
 									</div>
 									
 									<div class="mb-3">
 										<label for="descricao" class="col-form-label">Descrição:</label>
-										<textarea name="descricao" class="form-control" id="descricao"></textarea>
+										<textarea th:field="*{descricao}" class="form-control" placeholder="Descrição do investimento"></textarea>
 									</div>
 									
 									<div class="modal-footer">
