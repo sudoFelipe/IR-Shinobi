@@ -51,6 +51,6 @@ public class InvestimentoController {
 		
 		modelo.addAttribute("investimentos", lsInvestimentos);
 		
-		return "home";
+		return "redirect:/home";
 	}
 }

@@ -1,34 +1,22 @@
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-<head>
-<meta content="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shinobi - IR</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js"
-	integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+<head th:replace="~{layout :: head}"></head>
 
 <body>
+
+	<div th:replace="~{layout :: header}"></div>
 
 	<div class="container">
 
 		<div>
-			<nav
+			<!-- <nav
 				class="navbar navbar-expand bg-light d-flex justify-content-around"
 				style="background-color: #e3f2fd;">
 
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/home"> <img
-					src="https://w7.pngwing.com/pngs/878/947/png-transparent-orochimaru-sasuke-uchiha-symbol-logo-ninja-rank-symbol-miscellaneous-logo-monochrome-thumbnail.png"
+					src="https://w7.pngwing.com/pngs/810/419/png-transparent-kakashi-hatake-sasuke-uchiha-itachi-uchiha-sharingan-uchiha-clan-naruto-smiley-cartoon-desktop-wallpaper.png"
 					alt="" width="30" height="24" class="d-inline-block align-text-top">
 					Shinobi
 				</a>
@@ -45,7 +33,7 @@
 					<button class="btn btn-outline-success" type="submit">Pesquisar</button>
 				</div>
 			</div>
-			</nav>
+			</nav> -->
 		</div>
 
 		<div>
@@ -67,7 +55,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav" th:each="inv : ${investimentos}">
-					<a class="nav-link active" aria-current="page" href="#" th:text="${inv.nome}">Todos</a>
+					<a class="nav-link active" aria-current="page" th:href="${inv.path}" th:text="${inv.nome}">Todos</a>
 				</div>
 			</div>
 
@@ -108,6 +96,11 @@
 									</div>
 									
 									<div class="mb-3">
+										<label for="path" class="col-form-label">Path (caminho):</label>
+										<input th:field="*{path}" class="form-control" placeholder="Rota de acesso à página"></input>
+									</div>
+									
+									<div class="mb-3">
 										<label for="descricao" class="col-form-label">Descrição:</label>
 										<textarea th:field="*{descricao}" class="form-control" placeholder="Descrição do investimento"></textarea>
 									</div>
@@ -134,11 +127,17 @@
 				<p class="card-text" th:text="${inv.sigla}"></p>
 				<p class="card-text" th:text="${inv.atuacao}"></p>
 				<p class="card-text" th:text="${inv.descricao}"></p>
+				<p class="card-text" th:text="${inv.path}"></p>
 				<a href="#" class="btn btn-primary">Gerenciar Ativo</a>
 			</div>
 		</div>
 
 	</div>
+	
+	<div class="logo-container p-2 d-flex justify-content-center">
 
+		<b>Sistema desenvolvido por Luís Felipe</b>
+	
+	</div>
 </body>
 </html>

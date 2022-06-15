@@ -28,4 +28,5 @@ public class Investimento {
 	@Getter @Setter private String sigla;
 	@Getter @Setter private String atuacao;
 	@Getter @Setter private String descricao;
+	@Getter @Setter private String path;
 }
