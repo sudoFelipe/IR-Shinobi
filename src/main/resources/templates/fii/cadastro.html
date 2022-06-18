@@ -1,0 +1,66 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head th:replace="~{layout :: head}"></head>
+	
+	<body>
+	
+		<div th:replace="~{layout :: header}"></div>
+		
+		<div class="container">
+		
+			<div class="jumbotron mb-3">
+			  <h1 class="display-4">Cadastro de Fundos Imobiliários</h1>
+			  <p class="lead">Cadastre o aporte feito no fundo imobiliário.</p>
+			  <hr class="my-4">
+			</div>
+		
+			<form action="/fii/registro" method="POST">
+			
+			  <div class="form-row">
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" placeholder="Ticker">
+  				  <label for="nome">Nome Fundo Imobiliário</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" placeholder="Ticker">
+  				  <label for="ticker">Ticker</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" placeholder="Empresa">
+  				  <label for="gestora">Nome da Gestora</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" id="floatingInput" placeholder="Quantidade">
+  				  <label for="quantidade">Quantidade de Cotas</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" id="floatingInput" placeholder="Valor">
+  				  <label for="valor">Valor</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" id="floatingInput" placeholder="Valor Total">
+  				  <label for="valorTotal">Valor Total</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" class="form-control is-valid" id="floatingInput" placeholder="Data">
+  				  <label for="data">Data da Movimentação</label>
+			    </div>
+			    
+			  </div>
+			  
+			  <button class="btn btn-success mb-3" type="submit">Cadastrar FII</button>
+			
+			</form>
+		
+		</div>
+		
+	</body>
+</html>

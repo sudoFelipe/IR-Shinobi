@@ -51,86 +51,79 @@
 		</div>
 
 		<nav class="navbar navbar-expand bg-light d-flex justify-content-around mb-3">
-		<div class="container-fluid">
-
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav" th:each="inv : ${investimentos}">
-					<a class="nav-link active" aria-current="page" th:href="${inv.path}" th:text="${inv.nome}">Todos</a>
-				</div>
-			</div>
-
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formInvestimento" data-bs-whatever="@getbootstrap">
-				Novo Ativo
-			</button>
-
-			<div class="modal fade" id="formInvestimento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-				<form id="cadInvest" th:object="${requestInvestimento}" action="/investimento/novo" method="POST">
-					<div class="modal-dialog">
-
-						<div class="modal-content">
+			<div class="container-fluid">
 	
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Nome do Investimento</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-	
-							<div class="modal-body">
-	
-									<div class="mb-3">
-										<label for="nome" class="col-form-label">Investimento:</label>
-										<input th:field="*{nome}" class="form-control" th:errorclass="is-invalid" placeholder="Nome do investimento (ativo)" ></input>
-										<div th:errors="*{nome}" class="invalid-feedback"/>
-									</div>
-									
-									<div class="mb-3">
-										<label for="sigla" class="col-form-label">Sigla:</label>
-										<input th:field="*{sigla}" class="form-control" th:errorclass="is-invalid" placeholder="Sigla do ativo"></input>
-										<div th:errors="*{sigla}" class="invalid-feedback"/>
-									</div>
-									
-									<div class="mb-3">
-										<label for="atuacao" class="col-form-label">Atuação:</label>
-										<input th:field="*{atuacao}" class="form-control" th:errorclass="is-invalid" placeholder="Ramo de atuação do ativo"></input>
-										<div th:errors="*{atuacao}" class="invalid-feedback"/>
-									</div>
-									
-									<div class="mb-3">
-										<label for="path" class="col-form-label">Path (caminho):</label>
-										<input th:field="*{path}" class="form-control" placeholder="Rota de acesso à página"></input>
-									</div>
-									
-									<div class="mb-3">
-										<label for="descricao" class="col-form-label">Descrição:</label>
-										<textarea th:field="*{descricao}" class="form-control" placeholder="Descrição do investimento"></textarea>
-									</div>
-									
-									<div class="modal-footer">
-										<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-										<button type="submit" class="btn btn-primary">Salvar</button>
-									</div>
-							</div>
-	
-						</div>
-	
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="btn btn-outline-success m-2" aria-current="page" href="/acao/admin">Ações</a>
+						<a class="btn btn-outline-success m-2" aria-current="page" href="/fii/admin">Fundos Imobiliários</a>
+						<a class="btn btn-outline-success m-2" aria-current="page" href="/crypto/admin">Criptomoedas</a>
+						<a class="btn btn-outline-success m-2" aria-current="page" href="/tesouro/admin">Tesouro Direto</a>
+						<a class="btn btn-outline-success m-2" aria-current="page" href="/rendaFixa/admin">Renda Fixa</a>
 					</div>
-				</form>
-
+				</div>
+	
+				<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formInvestimento" data-bs-whatever="@getbootstrap">
+					Novo Ativo
+				</button>
+	
+				<div class="modal fade" id="formInvestimento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	
+					<form id="cadInvest" th:object="${requestInvestimento}" action="/investimento/novo" method="POST">
+						<div class="modal-dialog">
+	
+							<div class="modal-content">
+		
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Nome do Investimento</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+		
+								<div class="modal-body">
+		
+										<div class="mb-3">
+											<label for="nome" class="col-form-label">Investimento:</label>
+											<input th:field="*{nome}" class="form-control" th:errorclass="is-invalid" placeholder="Nome do investimento (ativo)" ></input>
+											<div th:errors="*{nome}" class="invalid-feedback"/>
+										</div>
+										
+										<div class="mb-3">
+											<label for="sigla" class="col-form-label">Sigla:</label>
+											<input th:field="*{sigla}" class="form-control" th:errorclass="is-invalid" placeholder="Sigla do ativo"></input>
+											<div th:errors="*{sigla}" class="invalid-feedback"/>
+										</div>
+										
+										<div class="mb-3">
+											<label for="atuacao" class="col-form-label">Atuação:</label>
+											<input th:field="*{atuacao}" class="form-control" th:errorclass="is-invalid" placeholder="Ramo de atuação do ativo"></input>
+											<div th:errors="*{atuacao}" class="invalid-feedback"/>
+										</div>
+										
+										<div class="mb-3">
+											<label for="path" class="col-form-label">Path (caminho):</label>
+											<input th:field="*{path}" class="form-control" placeholder="Rota de acesso à página"></input>
+										</div>
+										
+										<div class="mb-3">
+											<label for="descricao" class="col-form-label">Descrição:</label>
+											<textarea th:field="*{descricao}" class="form-control" placeholder="Descrição do investimento"></textarea>
+										</div>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Salvar</button>
+										</div>
+								</div>
+		
+							</div>
+		
+						</div>
+					</form>
+	
+				</div> -->
+	
 			</div>
-
-		</div>
 		</nav>
-
-		<div class="card text-bg-dark w-50 mb-3 col-sm-8" style="width: 18rem;" th:each="inv : ${investimentos}">
-			<div class="card-body">
-				<h5 class="card-title" th:text="${inv.nome}"></h5>
-				<p class="card-text" th:text="${inv.sigla}"></p>
-				<p class="card-text" th:text="${inv.atuacao}"></p>
-				<p class="card-text" th:text="${inv.descricao}"></p>
-				<p class="card-text" th:text="${inv.path}"></p>
-				<a href="#" class="btn btn-primary">Gerenciar Ativo</a>
-			</div>
-		</div>
 
 	</div>
 	
