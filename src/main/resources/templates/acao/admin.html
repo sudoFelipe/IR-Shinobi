@@ -10,9 +10,9 @@
 		<div class="container">
 	
 			<div class="jumbotron">
-				<h1 class="display-4">Administrador de FII's</h1>
-				<p class="lead">Movimentações dos Fundos Imobiliários.</p>
-				<a class="btn btn-success" href="/fii/cadastro" role="button">Adicionar Novo Aporte</a>
+				<h1 class="display-4">Administrador de Ações</h1>
+				<p class="lead">Movimentações das ações brasileiras/americanas.</p>
+				<a class="btn btn-success" href="/acao/cadastro" role="button">Adicionar Novo Aporte</a>
 				<hr class="my-4">
 			</div>
 	
@@ -23,25 +23,25 @@
 				  <thead>
 				    <tr class="table-info">
 				      <th scope="col">Id</th>
-				      <th scope="col">FII</th>
-				      <th scope="col">Gestora</th>
+				      <th scope="col">Ação</th>
+				      <th scope="col">Ticker</th>
 				      <th scope="col">Valor Unitário</th>
 				      <th scope="col"><span class="badge bg-primary rounded-pill">Quantidade</span></th>
 				      <th scope="col">Valor Total</th>
-				      <th scope="col">Período Movimentação</th>
+				      <th scope="col">Período Movimentacao</th>
 				    </tr>
 				  </thead>
 				  
 				  <tbody>
 				    
-				    <tr th:each="fii : ${list}">
-				      <th scope="row" th:text="${fii.id}"></th>
-				      <td th:text="${fii.nome}"></td>
-				      <td th:text="${fii.gestora}"></td>
-				      <td th:text="${fii.valor}"></td>
-				      <td><span class="badge bg-primary rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      <td th:text="${fii.total}"></td>
-				      <td th:text="${fii.dataMovimentacao}"></td>
+				    <tr th:each="acao : ${list}">
+				      <th scope="row" th:text="${acao.id}"></th>
+				      <td th:text="${acao.nome}"></td>
+				      <td th:text="${acao.ticker}"></td>
+				      <td th:text="${acao.valor}"></td>
+				      <td><span class="badge bg-primary rounded-pill" th:text="${acao.quantidade}"></span></td>
+				      <td th:text="${acao.total}"></td>
+				      <td th:text="${acao.dataMovimentacao}"></td>
 				    </tr>
 				    
 				  </tbody>

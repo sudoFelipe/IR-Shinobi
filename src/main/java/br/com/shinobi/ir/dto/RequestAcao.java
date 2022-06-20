@@ -8,13 +8,11 @@ import lombok.ToString;
 
 @ToString
 
-public class RequestFII {
-	
+public class RequestAcao {
+
 	@Getter @Setter private String nome;
 	@Getter @Setter private String ticker;
-	@Getter @Setter private String gestora;
 	@Getter @Setter private Integer quantidade;
 	@Getter @Setter private Double valor;
-	@Getter @Setter private Double total;
 	@Getter @Setter private LocalDate data;
 }

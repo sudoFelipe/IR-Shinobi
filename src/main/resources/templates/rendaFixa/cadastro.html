@@ -1,0 +1,51 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head th:replace="~{layout :: head}"></head>
+	
+	<body>
+	
+		<div th:replace="~{layout :: header}"></div>
+		
+		<div class="container">
+		
+			<div class="jumbotron mb-3">
+			  <h1 class="display-4">Cadastro de Investimento em Renda Fixa</h1>
+			  <p class="lead">Cadastre o aporte feito em renda fixa.</p>
+			  <hr class="my-4">
+			</div>
+		
+			<form action="/rendaFixa/registro" th:object="${requestRendaFixa}" method="POST">
+			
+			  <div class="form-row">
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" th:field="*{nome}" class="form-control is-valid" placeholder="Nome">
+  				  <label for="nome">Nome Banco</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" th:field="*{vencimento}" class="form-control is-valid" id="floatingInput" placeholder="Data">
+  				  <label for="vencimento">Data de Vencimento</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" th:field="*{valor}" class="form-control is-valid" id="floatingInput" placeholder="Valor">
+  				  <label for="valor">Valor</label>
+			    </div>
+			    
+			    <div class="form-floating mb-3">
+			      <input type="text" th:field="*{data}" class="form-control is-valid" id="floatingInput" placeholder="Data">
+  				  <label for="data">Data da Movimentação</label>
+			    </div>
+			    
+			  </div>
+			  
+			  <button class="btn btn-success mb-3" type="submit">Cadastrar Renda Fixa</button>
+			
+			</form>
+		
+		</div>
+		
+	</body>
+</html>
