@@ -20,33 +20,47 @@
 			  <div class="form-row">
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{nome}" class="form-control is-valid" placeholder="Ticker">
+			      <input type="text" th:field="*{nome}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Ticker">
   				  <label for="nome">Nome Fundo Imobiliário</label>
+  				  <div class="invalid-feedback" th:errors="*{nome}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{ticker}" class="form-control is-valid" placeholder="Ticker">
+			      <input type="text" th:field="*{ticker}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Ticker">
   				  <label for="ticker">Ticker</label>
+  				  <div class="invalid-feedback" th:errors="*{ticker}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{gestora}" class="form-control is-valid" placeholder="Empresa">
+			      <input type="text" th:field="*{gestora}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Empresa">
   				  <label for="gestora">Nome da Gestora</label>
+  				  <div class="invalid-feedback" th:errors="*{gestora}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{quantidade}" class="form-control is-valid" id="floatingInput" placeholder="Quantidade">
+			      <input type="text" th:field="*{quantidade}" class="form-control is-valid" th:errorclass="is-invalid" id="floatingInput" placeholder="Quantidade">
   				  <label for="quantidade">Quantidade de Cotas</label>
+  				  <div class="invalid-feedback" th:errors="*{quantidade}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{valor}" class="form-control is-valid" id="floatingInput" placeholder="Valor">
+			      <input type="text" th:field="*{valor}" class="form-control is-valid" th:errorclass="is-invalid" id="floatingInput" placeholder="Valor">
   				  <label for="valor">Valor</label>
+  				  <div class="invalid-feedback" th:errors="*{valor}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{data}" class="form-control is-valid" id="floatingInput" placeholder="Data">
+			      <input type="text" th:field="*{data}" class="form-control is-valid" th:errorclass="is-invalid" id="floatingInput" placeholder="Data">
   				  <label for="data">Data da Movimentação</label>
+  				  <div class="invalid-feedback" th:errors="*{data}"></div>
+			    </div>
+			    
+			    <div>
+			    	<select th:field="*{movimentacao}" class="form-select form-select-lg mb-3 is-valid" th:errorclass="is-invalid" aria-label=".form-select-lg example">
+					  <option value="" selected>Selecione ...</option>
+					  <option th:each="mov : ${movimentacoes}" th:value="${mov}" th:text="${mov.nome}" ></option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{movimentacao}"></div>
 			    </div>
 			    
 			  </div>

@@ -1,8 +1,11 @@
 package br.com.shinobi.ir.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,19 +32,32 @@ public class FIIController {
 	}
 	
 	@GetMapping("cadastro")
-	public String fiiCadastro(RequestFII dados) {
+	public String fiiCadastro(Model modelo, RequestFII dados) {
+		
+		FII fii = new FII();
+		
+		modelo.addAttribute("movimentacoes", fii.movimentacoes());
 		
 		return "fii/cadastro";
 	}
 	
 	@PostMapping("registro")
-	public String fiiRegistro(RequestFII dados) {
+	public String fiiRegistro(Model modelo, @Valid RequestFII dados, BindingResult resultado) {
+		
+		if (resultado.hasErrors()) {
+			
+			FII fii = new FII();
+			
+			modelo.addAttribute("movimentacoes", fii.movimentacoes());
+			
+			return "fii/cadastro";
+		}
 		
 		FII fii = new FII();
 		fii.toFII(dados);
 		
 		fiiRepo.save(fii);
 		
-		return "fii/admin";
+		return "redirect:/fii/admin";
 	}
 }
