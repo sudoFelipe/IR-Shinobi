@@ -38,19 +38,12 @@
 				      <th scope="row" th:text="${fii.id}"></th>
 				      <td th:text="${fii.nome}"></td>
 				      <td th:text="${fii.gestora}"></td>
-				      <td th:text="${fii.valor}"></td>
+				      <td th:text="${#numbers.formatCurrency(fii.valor)}"></td>
 				      
-				      <td><span class="badge bg-primary rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      	
+				      <td><span th:classappend="${fii.movimentacao.name} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${fii.quantidade}"></span></td>
 				      
-				      <!-- <th:block th:switch="${fii.movimentacao.name()}">
-				      	<td><span th:case="COMPRA" class="badge bg-primary rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      	<td><span th:case="VENDA" class="badge bg-danger rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      	<td><span th:case="ALUGUEL" class="badge bg-warning rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      </th:block> -->
-				      
-				      <td th:text="${fii.total}"></td>
-				      <td th:text="${fii.dataMovimentacao}"></td>
+				      <td th:text="${#numbers.formatCurrency(fii.total)}"></td>
+				      <td th:text="${#temporals.format(fii.dataMovimentacao, 'dd/MM/yyyy')}"></td>
 				    </tr>
 				    
 				  </tbody>
