@@ -29,7 +29,11 @@
 
 <div th:fragment="header" class="logo-container mb-3 p-3 d-flex justify-content-between">
 	<span class="logo">Shinobi</span>
-	<span>Login</span>
+	<span class="mt-3">
+		<a href="/login" sec:authorize="!isAuthenticated()" class="text-light">Login</a>
+		<a onclick="document.querySelector('#form-login').submit()" href="#" sec:authorize="isAuthenticated()" class="text-light">Logout</a>
+		<form id="form-login" th:action="@{/logout}" method="post"></form>
+	</span>
 </div>
 
 <!-- <div th:fragment="header(valor)" class="logo-container mb-3 p-3 d-flex justify-content-between">

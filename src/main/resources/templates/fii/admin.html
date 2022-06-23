@@ -40,7 +40,7 @@
 				      <td th:text="${fii.gestora}"></td>
 				      <td th:text="${#numbers.formatCurrency(fii.valor)}"></td>
 				      
-				      <td><span th:classappend="${fii.movimentacao.name} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${fii.quantidade}"></span></td>
+				      <td><span th:classappend="${fii.movimentacao.name()} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${fii.quantidade}"></span></td>
 				      
 				      <td th:text="${#numbers.formatCurrency(fii.total)}"></td>
 				      <td th:text="${#temporals.format(fii.dataMovimentacao, 'dd/MM/yyyy')}"></td>
