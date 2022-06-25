@@ -1,5 +1,7 @@
 package br.com.shinobi.ir.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,9 @@ public class FIIController {
 	private FIIRepository fiiRepo;
 	
 	@GetMapping("admin")
-	public String fii(Model modelo) {
+	public String fii(Model modelo, Principal principal) {
 		
-		Iterable<FII> list = fiiRepo.findAll();
+		Iterable<FII> list = fiiRepo.findAllByUsuario(principal.getName());
 		
 		modelo.addAttribute("list", list);
 		

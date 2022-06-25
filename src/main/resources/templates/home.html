@@ -10,44 +10,88 @@
 	<div class="container">
 
 		<div>
-			<!-- <nav
-				class="navbar navbar-expand bg-light d-flex justify-content-around"
-				style="background-color: #e3f2fd;">
-
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/home"> <img
-					src="https://w7.pngwing.com/pngs/810/419/png-transparent-kakashi-hatake-sasuke-uchiha-itachi-uchiha-sharingan-uchiha-clan-naruto-smiley-cartoon-desktop-wallpaper.png"
-					alt="" width="30" height="24" class="d-inline-block align-text-top">
-					Shinobi
-				</a>
-
-				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<div class="navbar-nav">
-						<a class="nav-link" href="/home">Home</a>
-					</div>
-				</div>
-
-				<div class="collapse navbar-collapse">
-					<input class="form-control me-2" type="search"
-						placeholder="Pesquisa..." aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Pesquisar</button>
-				</div>
-			</div>
-			</nav> -->
-		</div>
-
-		<div>
 			<div class="alert alert-info" role="alert">
-				Olá <span th:text="${usuario.nome}"></span>, bem vindo!
+				Olá <span th:text="${usuario.username}"></span>, bem vindo!
 			</div>
 		</div>
 
 		<div class="jumbotron">
 			Bem vindo,
-			<h1 class="display-4" th:text="${usuario.nome}"></h1>
+			<h1 class="display-4" th:text="${usuario.username}"></h1>
 			<p class="lead">Use os recursos da plataforma para gerenciar seus
 				investimentos.</p>
 			<hr class="my-4">
+		</div>
+		
+		<div>
+			<div>
+			  
+			  <script src="https://code.highcharts.com/highcharts.js"></script>
+			  <!-- <script src="/js/highcharts.js"></script> -->
+			  <script type="text/javascript" src="/js/themes/gray.js"></script>
+			  
+			  <div id="container" style="width:100%; height:400px;"></div>
+			  
+			  <script>
+			  
+				// Build the chart
+			  Highcharts.chart('container', {
+			      chart: {
+			          plotBackgroundColor: null,
+			          plotBorderWidth: null,
+			          plotShadow: false,
+			          type: 'pie'
+			      },
+			      title: {
+			          text: 'Browser market shares in January, 2018'
+			      },
+			      tooltip: {
+			          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			      },
+			      accessibility: {
+			          point: {
+			              valueSuffix: '%'
+			          }
+			      },
+			      plotOptions: {
+			          pie: {
+			              allowPointSelect: true,
+			              cursor: 'pointer',
+			              dataLabels: {
+			                  enabled: false
+			              },
+			              showInLegend: true
+			          }
+			      },
+			      series: [{
+			          name: '% Carteira',
+			          colorByPoint: true,
+			          data: [{
+			              name: 'Tesouro Direto',
+			              y: 61.41,
+			              sliced: true,
+			              selected: true
+			          }, {
+			              name: 'Fundos Imobiliários',
+			              y: 11.84
+			          }, {
+			              name: 'Ações',
+			              y: 10.85
+			          }, {
+			              name: 'Criptomoedas',
+			              y: 4.67
+			          }, {
+			              name: 'Renda Fixa',
+			              y: 4.18
+			          }, {
+			              name: 'Outros',
+			              y: 7.05
+			          }]
+			      }]
+			  });
+			  
+			  </script>
+			
 		</div>
 
 		<nav class="navbar navbar-expand bg-light d-flex justify-content-around mb-3">

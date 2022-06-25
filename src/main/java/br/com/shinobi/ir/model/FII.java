@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import br.com.shinobi.ir.dto.RequestFII;
 import br.com.shinobi.ir.enums.EnumMovimentacao;
@@ -35,6 +37,9 @@ public class FII {
 	@Getter @Setter private EnumMovimentacao movimentacao;
 	@Getter @Setter private LocalDate dataMovimentacao;
 
+	//	Mapeamento do usuário relativo aos FII's
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Usuario user;
 
 	public void toFII(RequestFII dados) {
 		

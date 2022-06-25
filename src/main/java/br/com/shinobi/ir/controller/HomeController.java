@@ -1,6 +1,6 @@
 package br.com.shinobi.ir.controller;
 
-import java.time.LocalDate;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +17,9 @@ public class HomeController {
 	private UsuarioRepository usuarioRepo;
 	
 	@GetMapping("home")
-	public String home(Model modelo) {
+	public String home(Model modelo, Principal principal) {
 		
-		usuarioRepo.save(new Usuario(null, "Luís Felipe", 25, LocalDate.of(1997, 5, 14), "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/48px-User_icon_2.svg.png?20070812155648"));
-		
-		Usuario usu = usuarioRepo.findById(1).get();
+		Usuario usu = usuarioRepo.findById(principal.getName()).get();
 		
 		modelo.addAttribute("usuario", usu);
 		

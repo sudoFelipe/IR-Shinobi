@@ -1,19 +1,22 @@
 package br.com.shinobi.ir;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.context.annotation.Bean;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration		//	Anotação de configuração 
 @EnableWebSecurity	//	Disponibiliza as dependência do spring security sobre configurações
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
+	@Autowired
+	private DataSource dataSource;
+	
 //	USADO A PARTIR DA VERSÃO 5.7
 //	@Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			
 			.and()
 				.formLogin(form -> form
-						.loginPage("/login")	//	URL da página de login
+						.loginPage("/login")				//	URL da página de login
+						.defaultSuccessUrl("/home", true)	//	Caso o usuário efetue o login, será redirecionado para a home page
 						.permitAll()
 						
 				)
@@ -43,15 +47,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	}
 	
-	@Bean
 	@Override
-	public UserDetailsService userDetailsService() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("luis")
-				.password("123")
-				.roles("ADM")
-				.build();
-
-		return new InMemoryUserDetailsManager(user);
-	}
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+//		UserDetails user = User.builder()
+//				.username("luis")
+//				.password(encoder.encode("123"))
+//				.roles("ADM")
+//				.build();
+		
+		auth.jdbcAuthentication()
+			.dataSource(dataSource)		//	Responsável por conexões do banco de dados
+			.passwordEncoder(encoder);
+			
+		}
 }
