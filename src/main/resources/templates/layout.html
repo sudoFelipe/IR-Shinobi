@@ -12,6 +12,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Kaushan+Script&family=Russo+One&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 	
 	<style>
 		.logo-container{
@@ -24,9 +25,22 @@
 			font-size: 40px;
 		}
 		
+		.modal{
+			width: 300px;
+		}
+		
+		.modal-content{
+			width: 300px;
+		}
+		
+		.list-group-item:hover{
+			color: green;
+		}
+		
 	</style>
 </head>
 
+<!-- HEADER -->
 <div th:fragment="header" class="logo-container mb-3 p-3 d-flex justify-content-between">
 	<span class="logo">Shinobi</span>
 	<span class="mt-3">
@@ -36,7 +50,150 @@
 	</span>
 </div>
 
+
+<!-- BARRA DO TOPO 1 -->
+<!-- <div th:fragment="top-bar">
+	<nav class="navbar navbar-light bg-light shadow">
+		<div class="container-fluid">
+		  	<span class="navbar-brand mb-0 h1">Menu</span>
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+
+	Modal
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-fullscreen">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        
+	        <ul class="list-group list-group-flush">
+			  <li class="list-group-item list-group-item-action">Home</li>
+			  <li class="list-group-item list-group-item-action">Ações</li>
+			  <li class="list-group-item list-group-item-action">Fundos Imobiliários</li>
+			  <li class="list-group-item list-group-item-action">Criptomoedas</li>
+			  <li class="list-group-item list-group-item-action">Renda Fixa</li>
+			  <li class="list-group-item list-group-item-action">Tesouro Direto</li>
+			</ul>
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+</div> -->
+
+<div th:fragment="top-bar">
+
+	<nav class="navbar navbar-dark bg-success shadow">
+		<div class="container-fluid">
+		
+			<button type="button" class="navbar-toggler"
+				data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+				aria-controls="offcanvasExample">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<a class="navbar-brand logo" href="">Shinobi</a>
+			
+			<span class="mt-3">
+				<a href="/login" sec:authorize="!isAuthenticated()" class="text-light">Login</a>
+				<a onclick="document.querySelector('#form-login').submit()" href="#" sec:authorize="isAuthenticated()" class="text-light">Logout</a>
+				<form id="form-login" th:action="@{/logout}" method="post"></form>
+			</span>
+			
+		</div>
+	</nav>
+
+	<!-- ADD ROUTES -->
+	<!-- <a class="btn btn-outline-success m-2" aria-current="page" href="/acao/admin">Ações</a>
+	<a class="btn btn-outline-success m-2" aria-current="page" href="/fii/admin">Fundos Imobiliários</a>
+	<a class="btn btn-outline-success m-2" aria-current="page" href="/crypto/admin">Criptomoedas</a>
+	<a class="btn btn-outline-success m-2" aria-current="page" href="/tesouro/admin">Tesouro Direto</a>
+	<a class="btn btn-outline-success m-2" aria-current="page" href="/rendaFixa/admin">Renda Fixa</a> -->
+
+	<div class="offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 280px;">
+		
+		    <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+		      <img src="https://github.com/mdo.png" alt="" width="50" height="50" class="rounded-circle me-4">
+		      <span class="fs-4">Sidebar</span>
+		    </a>
+		    <hr>
+		    <ul class="nav nav-pills flex-column mb-auto">
+		      <li class="nav-item">
+		        <a href="#" class="nav-link active" aria-current="page">
+		          <i class="bi bi-house-door-fill me-2"></i>
+		          Home
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-wallet"></i>
+		          Wallet
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-house-door-fill me-2"></i>
+		          Ações
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-building me-2"></i>
+		          Fundos Imobiliários
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-currency-bitcoin me-2"></i>
+		          Criptomoedas
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-bank me-2"></i>
+		          Renda Fixa
+		        </a>
+		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-wallet-fill me-2"></i>
+		          Tesouro Direto
+		        </a>
+		      </li>
+		    </ul>
+		    <hr>
+		    <div class="dropdown">
+		      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+		        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+		        <strong>mdo</strong>
+		      </a>
+		      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+		        <li><a class="dropdown-item" href="#">New project...</a></li>
+		        <li><a class="dropdown-item" href="#">Settings</a></li>
+		        <li><a class="dropdown-item" href="#">Profile</a></li>
+		        <li><hr class="dropdown-divider"></li>
+		        <li><a class="dropdown-item" href="#">Sign out</a></li>
+		      </ul>
+		    </div>
+		
+	</div>
+
+</div>
+
 <!-- <div th:fragment="header(valor)" class="logo-container mb-3 p-3 d-flex justify-content-between">
 	<span class="logo">Shinobi</span>
 	<span>Login</span>
 </div> -->
+
+</html>
