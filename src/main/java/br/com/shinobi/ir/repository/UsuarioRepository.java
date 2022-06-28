@@ -6,4 +6,5 @@ import br.com.shinobi.ir.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 
+	Usuario findByUsername(String usuario);
 }

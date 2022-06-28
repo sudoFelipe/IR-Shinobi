@@ -39,7 +39,7 @@ public class FII {
 
 	//	Mapeamento do usuário relativo aos FII's
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Usuario user;
+	@Getter @Setter private Usuario user;
 
 	public void toFII(RequestFII dados) {
 		

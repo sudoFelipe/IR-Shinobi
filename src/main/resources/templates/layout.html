@@ -50,49 +50,7 @@
 	</span>
 </div>
 
-
-<!-- BARRA DO TOPO 1 -->
-<!-- <div th:fragment="top-bar">
-	<nav class="navbar navbar-light bg-light shadow">
-		<div class="container-fluid">
-		  	<span class="navbar-brand mb-0 h1">Menu</span>
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
-
-	Modal
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-fullscreen">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body">
-	        
-	        <ul class="list-group list-group-flush">
-			  <li class="list-group-item list-group-item-action">Home</li>
-			  <li class="list-group-item list-group-item-action">Ações</li>
-			  <li class="list-group-item list-group-item-action">Fundos Imobiliários</li>
-			  <li class="list-group-item list-group-item-action">Criptomoedas</li>
-			  <li class="list-group-item list-group-item-action">Renda Fixa</li>
-			  <li class="list-group-item list-group-item-action">Tesouro Direto</li>
-			</ul>
-	        
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
-	
-</div> -->
-
-<div th:fragment="top-bar">
+<div th:fragment="menu">
 
 	<nav class="navbar navbar-dark bg-success shadow">
 		<div class="container-fluid">
@@ -114,13 +72,6 @@
 		</div>
 	</nav>
 
-	<!-- ADD ROUTES -->
-	<!-- <a class="btn btn-outline-success m-2" aria-current="page" href="/acao/admin">Ações</a>
-	<a class="btn btn-outline-success m-2" aria-current="page" href="/fii/admin">Fundos Imobiliários</a>
-	<a class="btn btn-outline-success m-2" aria-current="page" href="/crypto/admin">Criptomoedas</a>
-	<a class="btn btn-outline-success m-2" aria-current="page" href="/tesouro/admin">Tesouro Direto</a>
-	<a class="btn btn-outline-success m-2" aria-current="page" href="/rendaFixa/admin">Renda Fixa</a> -->
-
 	<div class="offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 280px;">
 		
 		    <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -130,7 +81,7 @@
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		      <li class="nav-item">
-		        <a href="#" class="nav-link active" aria-current="page">
+		        <a href="/home" class="nav-link active" aria-current="page">
 		          <i class="bi bi-house-door-fill me-2"></i>
 		          Home
 		        </a>
@@ -142,31 +93,31 @@
 		        </a>
 		      </li>
 		      <li>
-		        <a href="#" class="nav-link text-white">
+		        <a href="/acao/admin" class="nav-link text-white">
 		          <i class="bi bi-house-door-fill me-2"></i>
 		          Ações
 		        </a>
 		      </li>
 		      <li>
-		        <a href="#" class="nav-link text-white">
+		        <a href="/fii/admin" class="nav-link text-white">
 		          <i class="bi bi-building me-2"></i>
 		          Fundos Imobiliários
 		        </a>
 		      </li>
 		      <li>
-		        <a href="#" class="nav-link text-white">
+		        <a href="/crypto/admin" class="nav-link text-white">
 		          <i class="bi bi-currency-bitcoin me-2"></i>
 		          Criptomoedas
 		        </a>
 		      </li>
 		      <li>
-		        <a href="#" class="nav-link text-white">
+		        <a href="/rendaFixa/admin" class="nav-link text-white">
 		          <i class="bi bi-bank me-2"></i>
 		          Renda Fixa
 		        </a>
 		      </li>
 		      <li>
-		        <a href="#" class="nav-link text-white">
+		        <a href="/tesouro/admin" class="nav-link text-white">
 		          <i class="bi bi-wallet-fill me-2"></i>
 		          Tesouro Direto
 		        </a>
@@ -190,10 +141,5 @@
 	</div>
 
 </div>
-
-<!-- <div th:fragment="header(valor)" class="logo-container mb-3 p-3 d-flex justify-content-between">
-	<span class="logo">Shinobi</span>
-	<span>Login</span>
-</div> -->
 
 </html>

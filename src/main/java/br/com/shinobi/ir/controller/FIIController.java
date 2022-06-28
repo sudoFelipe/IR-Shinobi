@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.shinobi.ir.dto.RequestFII;
 import br.com.shinobi.ir.model.FII;
 import br.com.shinobi.ir.repository.FIIRepository;
+import br.com.shinobi.ir.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping("fii")
@@ -22,6 +24,9 @@ public class FIIController {
 
 	@Autowired
 	private FIIRepository fiiRepo;
+	
+	@Autowired
+	private UsuarioRepository userRepo;
 	
 	@GetMapping("admin")
 	public String fii(Model modelo, Principal principal) {
@@ -55,8 +60,12 @@ public class FIIController {
 			return "fii/cadastro";
 		}
 		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		FII fii = new FII();
 		fii.toFII(dados);
+		
+		fii.setUser(userRepo.findByUsername(username));
 		
 		fiiRepo.save(fii);
 		

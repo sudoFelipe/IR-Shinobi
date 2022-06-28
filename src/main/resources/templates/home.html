@@ -4,10 +4,8 @@
 <head th:replace="~{layout :: head}"></head>
 
 <body>
-
-	<!-- <div th:replace="~{layout :: header}"></div> -->
 	
-	<div th:replace="~{layout :: top-bar}"></div>
+	<div th:replace="~{layout :: menu}"></div>
 
 	<div class="container">
 
@@ -17,24 +15,6 @@
 			<p class="lead">Use os recursos da plataforma para gerenciar seus
 				investimentos.</p>
 			<hr class="my-4">
-		</div>
-		
-		<div>
-			<nav class="navbar navbar-expand bg-light d-flex justify-content-around mb-3">
-				<div class="container-fluid">
-		
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div class="navbar-nav">
-							<a class="btn btn-outline-success m-2" aria-current="page" href="/acao/admin">Ações</a>
-							<a class="btn btn-outline-success m-2" aria-current="page" href="/fii/admin">Fundos Imobiliários</a>
-							<a class="btn btn-outline-success m-2" aria-current="page" href="/crypto/admin">Criptomoedas</a>
-							<a class="btn btn-outline-success m-2" aria-current="page" href="/tesouro/admin">Tesouro Direto</a>
-							<a class="btn btn-outline-success m-2" aria-current="page" href="/rendaFixa/admin">Renda Fixa</a>
-						</div>
-					</div>
-		
-				</div>
-			</nav>
 		</div>
 			
 		<div>

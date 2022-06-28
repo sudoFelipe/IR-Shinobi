@@ -43,8 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 						.permitAll()
 						
 				)
-				.logout(log -> log.logoutUrl("/logout"));			//	Acesso permitido a todos os usuários
-		
+				.logout(log -> log.logoutUrl("/logout"))			//	Acesso permitido a todos os usuários
+				.csrf().disable();									//	Disabilitando funcionalidade de segurança CSRF
 	}
 	
 	@Override
