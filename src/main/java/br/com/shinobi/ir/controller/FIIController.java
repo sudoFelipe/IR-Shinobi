@@ -5,6 +5,8 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,12 @@ public class FIIController {
 	@GetMapping("admin")
 	public String fii(Model modelo, Principal principal) {
 		
-		Iterable<FII> list = fiiRepo.findAllByUsuario(principal.getName());
+		//	Ordenando e Passando um critério de paginação com a ordenação criada
+		//	PageRequest - parâmetros (num-páginas, quantidade de itens por página, ordenacao (Sort))
+		Sort ordenacao = Sort.by("dataMovimentacao").descending();
+		PageRequest paginacao = PageRequest.of(0, 6, ordenacao);
+		
+		Iterable<FII> list = fiiRepo.findAllByUsuario(principal.getName(), paginacao);
 		
 		modelo.addAttribute("list", list);
 		
