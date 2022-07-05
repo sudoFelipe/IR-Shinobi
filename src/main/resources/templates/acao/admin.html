@@ -28,7 +28,7 @@
 				      <th scope="col">Valor Unitário</th>
 				      <th scope="col"><span class="badge bg-primary rounded-pill">Quantidade</span></th>
 				      <th scope="col">Valor Total</th>
-				      <th scope="col">Período Movimentacao</th>
+				      <th scope="col">Período Movimentação</th>
 				    </tr>
 				  </thead>
 				  
@@ -38,10 +38,12 @@
 				      <th scope="row" th:text="${acao.id}"></th>
 				      <td th:text="${acao.nome}"></td>
 				      <td th:text="${acao.ticker}"></td>
-				      <td th:text="${acao.valor}"></td>
-				      <td><span class="badge bg-primary rounded-pill" th:text="${acao.quantidade}"></span></td>
-				      <td th:text="${acao.total}"></td>
-				      <td th:text="${acao.dataMovimentacao}"></td>
+				      <td th:text="${#numbers.formatCurrency(acao.valor)}"></td>
+				      
+				      <td><span th:classappend="${acao	.movimentacao.name()} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${acao.quantidade}"></span></td>
+				      
+				      <td th:text="${#numbers.formatCurrency(acao.total)}"></td>
+				      <td th:text="${#temporals.format(acao.dataMovimentacao, 'dd/MM/yyyy')}"></td>
 				    </tr>
 				    
 				  </tbody>
@@ -50,6 +52,8 @@
 			</div>
 	
 		</div>
+		
+		<div th:replace="~{layout :: footer}"/>
 		
 	</body>
 </html>

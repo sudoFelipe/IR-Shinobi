@@ -31,4 +31,16 @@ public class Usuario {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	@Getter @Setter private List<FII> lsFii = new ArrayList<FII>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@Getter @Setter private List<Acao> lsAcoes = new ArrayList<Acao>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@Getter @Setter private List<Crypto> lsCryptos = new ArrayList<Crypto>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@Getter @Setter private List<RendaFixa> lsRF = new ArrayList<RendaFixa>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@Getter @Setter private List<TesouroDireto> lsTD = new ArrayList<TesouroDireto>();
 }

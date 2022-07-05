@@ -34,8 +34,8 @@
 				    <tr th:each="crypto : ${list}">
 				      <th scope="row" th:text="${crypto.id}"></th>
 				      <td th:text="${crypto.nome}"></td>
-				      <td th:text="${crypto.valor}"></td>
-				      <td th:text="${crypto.dataMovimentacao}"></td>
+				      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
+				      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
 				    </tr>
 				    
 				  </tbody>
@@ -44,6 +44,8 @@
 			</div>
 	
 		</div>
+		
+		<div th:replace="~{layout :: footer}"/>
 		
 	</body>
 </html>

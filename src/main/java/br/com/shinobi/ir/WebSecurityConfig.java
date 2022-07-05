@@ -54,12 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 //		UserDetails user = User.builder()
-//				.username("luis")
+//				.username("ribb")
 //				.password(encoder.encode("123"))
 //				.roles("ADM")
 //				.build();
 		
 		auth.jdbcAuthentication()
+//			.withUser(user)
 			.dataSource(dataSource)		//	Responsável por conexões do banco de dados
 			.passwordEncoder(encoder);
 			

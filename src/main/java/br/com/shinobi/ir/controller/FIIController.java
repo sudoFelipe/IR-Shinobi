@@ -58,9 +58,9 @@ public class FIIController {
 	@PostMapping("registro")
 	public String fiiRegistro(Model modelo, @Valid RequestFII dados, BindingResult resultado) {
 		
+		FII fii = new FII();
+		
 		if (resultado.hasErrors()) {
-			
-			FII fii = new FII();
 			
 			modelo.addAttribute("movimentacoes", fii.movimentacoes());
 			
@@ -69,9 +69,7 @@ public class FIIController {
 		
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		FII fii = new FII();
 		fii.toFII(dados);
-		
 		fii.setUser(userRepo.findByUsername(username));
 		
 		fiiRepo.save(fii);

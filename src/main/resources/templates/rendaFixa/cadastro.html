@@ -20,23 +20,35 @@
 			  <div class="form-row">
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{nome}" class="form-control is-valid" placeholder="Nome">
+			      <input type="text" th:field="*{nome}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Nome">
   				  <label for="nome">Nome Banco</label>
+  				  <div class="invalid-feedback" th:errors="*{nome}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{vencimento}" class="form-control is-valid" id="floatingInput" placeholder="Data">
+			      <input type="text" th:field="*{vencimento}" class="form-control is-valid" th:errorclass="is-invalid" id="floatingInput" placeholder="Data">
   				  <label for="vencimento">Data de Vencimento</label>
+  				  <div class="invalid-feedback" th:errors="*{vencimento}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{valor}" class="form-control is-valid" id="floatingInput" placeholder="Valor">
+			      <input type="text" th:field="*{valor}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Valor">
   				  <label for="valor">Valor</label>
+  				  <div class="invalid-feedback" th:errors="*{valor}"></div>
 			    </div>
 			    
 			    <div class="form-floating mb-3">
-			      <input type="text" th:field="*{data}" class="form-control is-valid" id="floatingInput" placeholder="Data">
+			      <input type="text" th:field="*{data}" class="form-control is-valid" th:errorclass="is-invalid" placeholder="Data">
   				  <label for="data">Data da Movimentação</label>
+  				  <div class="invalid-feedback" th:errors="*{data}"></div>
+			    </div>
+			    
+			     <div class="mb-3">
+			    	<select th:field="*{movimentacao}" class="form-select form-select-lg is-valid" th:errorclass="is-invalid" aria-label=".form-select-lg example">
+					  <option value="" selected>Selecione ...</option>
+					  <option th:each="mov : ${movimentacoes}" th:value="${mov}" th:text="${mov.nome}" ></option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{movimentacao}"></div>
 			    </div>
 			    
 			  </div>
@@ -46,6 +58,8 @@
 			</form>
 		
 		</div>
+		
+		<div th:replace="~{layout :: footer}"/>
 		
 	</body>
 </html>

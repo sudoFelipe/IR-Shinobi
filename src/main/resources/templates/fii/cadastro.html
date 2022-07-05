@@ -55,8 +55,8 @@
   				  <div class="invalid-feedback" th:errors="*{data}"></div>
 			    </div>
 			    
-			    <div>
-			    	<select th:field="*{movimentacao}" class="form-select form-select-lg mb-3 is-valid" th:errorclass="is-invalid" aria-label=".form-select-lg example">
+			    <div class="mb-3">
+			    	<select th:field="*{movimentacao}" class="form-select form-select-lg is-valid" th:errorclass="is-invalid" aria-label=".form-select-lg example">
 					  <option value="" selected>Selecione ...</option>
 					  <option th:each="mov : ${movimentacoes}" th:value="${mov}" th:text="${mov.nome}" ></option>
 					</select>
@@ -70,6 +70,8 @@
 			</form>
 		
 		</div>
+		
+		<div th:replace="~{layout :: footer}"/>
 		
 	</body>
 </html>

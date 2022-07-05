@@ -35,9 +35,9 @@
 				    <tr th:each="td : ${list}">
 				      <th scope="row" th:text="${td.id}"></th>
 				      <td th:text="${td.nome}"></td>
-				      <td th:text="${td.vencimento}"></td>
-				      <td th:text="${td.valor}"></td>
-				      <td th:text="${td.dataMovimentacao}"></td>
+				      <td th:text="${#temporals.format(td.vencimento, 'dd/MM/yyyy')}"></td>
+				      <td th:text="${#numbers.formatCurrency(td.valor)}"></td>
+				      <td th:text="${#temporals.format(td.dataMovimentacao, 'dd/MM/yyyy')}"></td>
 				    </tr>
 				    
 				  </tbody>
@@ -46,6 +46,8 @@
 			</div>
 	
 		</div>
+		
+		<div th:replace="~{layout :: footer}"/>
 		
 	</body>
 </html>
