@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.shinobi.ir.dto.RequestFII;
 import br.com.shinobi.ir.enums.EnumMovimentacao;
 import lombok.Getter;
@@ -39,6 +41,7 @@ public class FII {
 
 	//	Mapeamento do usuário relativo aos FII's
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore									//	Ignora a visualização dos dados JSON do User (está gerando um Loop infinito por ter vários usuários
 	@Getter @Setter private Usuario user;
 
 	public void toFII(RequestFII dados) {
