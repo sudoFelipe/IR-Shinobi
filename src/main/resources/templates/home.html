@@ -9,81 +9,178 @@
 
 	<div class="container">
 
-		<div class="jumbotron">
+		<!-- <div class="jumbotron">
 			Bem vindo,
 			<h1 class="display-4" th:text="${usuario.username}"></h1>
 			<p class="lead">Use os recursos da plataforma para gerenciar seus
 				investimentos.</p>
 			<hr class="my-4">
-		</div>
+		</div> -->
+		
+		<header class="pb-3 mb-4 border-bottom d-flex gap-5 justify-content-center">
+	      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+	        <span class="fs-4">Informações Gerais</span>
+	      </a>
+	    </header>
 			
-		<div>
-			  
+		<div class="d-flex gap-5 justify-content-between">
+		
+			<div>
+				  
 			  <script src="https://code.highcharts.com/highcharts.js"></script>
-			  <!-- <script src="/js/highcharts.js"></script> -->
+			  <script src="/js/highcharts.js"></script>
 			  <script type="text/javascript" src="/js/themes/gray.js"></script>
 			  
-			  <div id="container" style="width:100%; height:400px;"></div>
+			  <div id="container" style="width:100%; height:400px;">
 			  
-			  <script>
-			  
-				// Build the chart
-			  Highcharts.chart('container', {
-			      chart: {
-			          plotBackgroundColor: null,
-			          plotBorderWidth: null,
-			          plotShadow: false,
-			          type: 'pie'
-			      },
-			      title: {
-			          text: 'Composição da Carteira de Investimentos'
-			      },
-			      tooltip: {
-			          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-			      },
-			      accessibility: {
-			          point: {
-			              valueSuffix: '%'
-			          }
-			      },
-			      plotOptions: {
-			          pie: {
-			              allowPointSelect: true,
-			              cursor: 'pointer',
-			              dataLabels: {
-			                  enabled: false
-			              },
-			              showInLegend: true
-			          }
-			      },
-			      series: [{
-			          name: '% Carteira',
-			          colorByPoint: true,
-			          data: [{
-			              name: 'Tesouro Direto',
-			              y: 61.41,
-			              sliced: true,
-			              selected: true
-			          }, {
-			              name: 'Fundos Imobiliários',
-			              y: 11.84
-			          }, {
-			              name: 'Ações',
-			              y: 10.85
-			          }, {
-			              name: 'Criptomoedas',
-			              y: 4.67
-			          }, {
-			              name: 'Renda Fixa',
-			              y: 4.18
-			          }, {
-			              name: 'Outros',
-			              y: 7.05
-			          }]
-			      }]
-			  });
-			  
-			  </script>
+				  <script>
+				  
+					// Build the chart
+				  Highcharts.chart('container', {
+				      chart: {
+				          plotBackgroundColor: null,
+				          plotBorderWidth: null,
+				          plotShadow: false,
+				          type: 'pie'
+				      },
+				      title: {
+				          text: 'Posições da Carteira'
+				      },
+				      tooltip: {
+				          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				      },
+				      legend: {
+				    	    align: 'left',
+				    	    layout: 'vertical',
+				    	    verticalAlign: 'middle',
+				    	    x: 40,
+				    	    y: 0,
+				    	    padding: 50,
+				            itemMarginTop: 5,
+				            itemMarginBottom: 5,
+				            itemStyle: {
+				                lineHeight: '10px'
+				            }
+				      },
+				      accessibility: {
+				          point: {
+				              valueSuffix: '%'
+				          }
+				      },
+				      plotOptions: {
+				          pie: {
+				              allowPointSelect: true,
+				              cursor: 'pointer',
+				              dataLabels: {
+				                  enabled: false
+				              },
+				              showInLegend: true
+				          }
+				      },
+				      series: [{
+				          name: '% Carteira',
+				          colorByPoint: true,
+				          data: [{
+				              name: 'Tesouro Direto - R$ 1.145,43',
+				              y: 61.41,
+				              sliced: true,
+				              selected: true
+				          }, {
+				              name: 'Fundos Imobiliários - R$ 1.145,43',
+				              y: 11.84
+				          }, {
+				              name: 'Ações  - R$ 1.145,43',
+				              y: 10.85
+				          }, {
+				              name: 'Criptomoedas  - R$ 1.145,43',
+				              y: 4.67
+				          }, {
+				              name: 'Renda Fixa  - R$ 1.145,43',
+				              y: 4.18
+				          }, {
+				              name: 'Outros - R$ 1.145,43',
+				              y: 7.05
+				          }]
+				      }]
+				  });
+				  
+				  </script>
+			
+				</div>
+	
+			</div>
+			
+			<div class="dropdown-menu dropdown-menu-dark d-block position-static border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px h-50">
+			    <ul class="list-unstyled mb-0">
+			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+			        <span class="d-inline-block bg-success rounded-circle p-1"></span>
+			        Total Investido - R$ 1.000.000,00
+			      </a></li>
+			      
+			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+			        <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+			        Imposto de Renda Acumulado: R$ 1.000.000,00
+			      </a></li>
+			      
+			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+			        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+			        Restituição  R$ 1.000.000,00
+			      </a></li>
+			      
+			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+			        <span class="d-inline-block bg-info rounded-circle p-1"></span>
+			        Lucro Acumulado R$ 1.000.000,00
+			      </a></li>
+			  	
+			    </ul>
+			  </div>
+			
+			<!-- <p>
+			  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+			    Fundos Imobiliários
+			  </button>
+			</p>
+			<div style="min-height: 120px;">
+			  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+			    <div class="card card-body" style="width: 300px;">
+			      	
+			      	<ul class="list-unstyled mb-0">
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				        <span class="d-inline-block bg-success rounded-circle p-1"></span>
+				        Action
+				      </a></li>
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+				        Another action
+				      </a></li>
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				        <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+				        Something else here
+				      </a></li>
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				        <span class="d-inline-block bg-info rounded-circle p-1"></span>
+				        Separated link
+				      </a></li>
+				    </ul>
+				    
+			    </div>
+			  </div>
+			</div> -->
+			
+			<!-- <p>
+			  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			    Link with href
+			  </a>
+			  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+			    Button with data-bs-target
+			  </button>
+			</p>
+			
+			<div class="collapse" id="collapseExample">
+			  	<div class="card card-body">
+			    	Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+			  	</div>
+			</div> -->
 			
 		</div>
 	
