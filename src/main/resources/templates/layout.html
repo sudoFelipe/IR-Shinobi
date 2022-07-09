@@ -157,6 +157,12 @@
 		          Tesouro Direto
 		        </a>
 		      </li>
+		      <li>
+		        <a href="#" class="nav-link text-white">
+		          <i class="bi bi-wallet-fill me-2"></i>
+		          Aporte
+		        </a>
+		      </li>
 		    </ul>
 		    <hr>
 		    <div class="dropdown">
@@ -178,11 +184,32 @@
 </div>
 
 
+<div th:fragment="header">
+	
+	<nav class="navbar navbar-dark bg-success shadow">
+		<div class="container-fluid">
+		
+			<span class="navbar-toggler-icon"></span>
+			
+			<a class="navbar-brand logo" href="/home">Shinobi</a>
+			
+			<div class="p-3">
+		      <a href="/login" class="d-flex align-items-center text-white text-decoration-none" role="button">
+		        <i class="bi bi-person-circle me-2"></i>
+		        <strong>Login</strong>
+		      </a>
+		    </div>
+			
+		</div>
+	</nav>
+	
+</div>
+
 
 <div th:fragment="footer">
 
 	<!-- Footer -->
-	<footer class="page-footer font-small blue">
+	<footer class="page-footer font-small blue shadow-lg">
 	
 	  <!-- Copyright -->
 	  <div class="footer-copyright text-center py-3 bg-success">© 2020 Copyright:

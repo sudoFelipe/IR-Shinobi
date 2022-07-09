@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		//	CONFIGURAÇÕES DAS REQUISIÇÕES
 		http.authorizeRequests()					//	Autorizador de requisições
-//				.antMatchers("/", "/home").permitAll()	//	Todas as rotas definidas estão sendo permitidas (não precisa estar autenticado)
+				.antMatchers("/home").permitAll()	//	Todas as rotas definidas estão sendo permitidas (não precisa estar autenticado)
 				.anyRequest().authenticated()			// Qualquer outra requisição (página) tem que estar autenticada
 			
 			.and()

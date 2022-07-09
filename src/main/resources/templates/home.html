@@ -3,11 +3,25 @@
 <html>
 <head th:replace="~{layout :: head}"></head>
 
-<body>
+<body class="bg-success">
 	
-	<div th:replace="~{layout :: menu}"></div>
+	<div th:replace="~{layout :: menu}" sec:authorize="isAuthenticated()"></div>
+	<div th:replace="~{layout :: header}" sec:authorize="!isAuthenticated()"></div>
 
-	<div class="container">
+	<!-- <div class="container">
+	    <div class="bg-light p-5 rounded">
+	      	<div class="col-sm-8 py-5 mx-auto">
+		        <h1 class="display-5 fw-normal">O que é o Shinobi?</h1>
+		        <p class="fs-5">Shinobi é uma plataforma com o intuito de facilitar o gerenciamento e a relação entre impostos nos investimentos
+		        do investidor (que muitas vezes são complicados) inclusos no mercado financeiro. 	
+		        <a href="/docs/5.2/examples/navbar-static/">top</a> and <a href="/docs/5.2/examples/navbar-fixed/">fixed top</a> examples.</p>
+		        <p>From the top down, you'll see a dark navbar, light navbar and a responsive navbar—each with offcanvases built in. Resize your browser window to the large breakpoint to see the toggle for the offcanvas.</p>
+		        <p>
+		          <a class="btn btn-primary" href="/docs/5.2/components/navbar/#offcanvas" role="button">Learn more about offcanvas navbars &raquo;</a>
+		        </p>
+	    	</div>
+	    </div>
+	</div> -->
 
 		<!-- <div class="jumbotron">
 			Bem vindo,
@@ -17,176 +31,124 @@
 			<hr class="my-4">
 		</div> -->
 		
-		<header class="pb-3 mb-4 border-bottom d-flex gap-5 justify-content-center">
+		<!-- HEADER -->
+		<!-- <header class="pb-3 mb-4 border-bottom d-flex gap-5 justify-content-center">
 	      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
 	        <span class="fs-4">Informações Gerais</span>
 	      </a>
-	    </header>
-			
-		<div class="d-flex gap-5 justify-content-between">
+	    </header> -->
 		
-			<div>
-				  
-			  <script src="https://code.highcharts.com/highcharts.js"></script>
-			  <script src="/js/highcharts.js"></script>
-			  <script type="text/javascript" src="/js/themes/gray.js"></script>
-			  
-			  <div id="container" style="width:100%; height:400px;">
-			  
-				  <script>
-				  
-					// Build the chart
-				  Highcharts.chart('container', {
-				      chart: {
-				          plotBackgroundColor: null,
-				          plotBorderWidth: null,
-				          plotShadow: false,
-				          type: 'pie'
-				      },
-				      title: {
-				          text: 'Posições da Carteira'
-				      },
-				      tooltip: {
-				          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-				      },
-				      legend: {
-				    	    align: 'left',
-				    	    layout: 'vertical',
-				    	    verticalAlign: 'middle',
-				    	    x: 40,
-				    	    y: 0,
-				    	    padding: 50,
-				            itemMarginTop: 5,
-				            itemMarginBottom: 5,
-				            itemStyle: {
-				                lineHeight: '10px'
-				            }
-				      },
-				      accessibility: {
-				          point: {
-				              valueSuffix: '%'
-				          }
-				      },
-				      plotOptions: {
-				          pie: {
-				              allowPointSelect: true,
-				              cursor: 'pointer',
-				              dataLabels: {
-				                  enabled: false
-				              },
-				              showInLegend: true
-				          }
-				      },
-				      series: [{
-				          name: '% Carteira',
-				          colorByPoint: true,
-				          data: [{
-				              name: 'Tesouro Direto - R$ 1.145,43',
-				              y: 61.41,
-				              sliced: true,
-				              selected: true
-				          }, {
-				              name: 'Fundos Imobiliários - R$ 1.145,43',
-				              y: 11.84
-				          }, {
-				              name: 'Ações  - R$ 1.145,43',
-				              y: 10.85
-				          }, {
-				              name: 'Criptomoedas  - R$ 1.145,43',
-				              y: 4.67
-				          }, {
-				              name: 'Renda Fixa  - R$ 1.145,43',
-				              y: 4.18
-				          }, {
-				              name: 'Outros - R$ 1.145,43',
-				              y: 7.05
-				          }]
-				      }]
-				  });
-				  
-				  </script>
+		<!-- MAIN -->
+		<!-- <main class="m-3">
 			
-				</div>
-	
-			</div>
+			<script src="https://code.highcharts.com/highcharts.js"></script>
+		  	<script src="/js/highcharts.js"></script>
+		  	<script type="text/javascript" src="/js/themes/gray.js"></script>
 			
-			<div class="dropdown-menu dropdown-menu-dark d-block position-static border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px h-50">
-			    <ul class="list-unstyled mb-0">
-			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-			        <span class="d-inline-block bg-success rounded-circle p-1"></span>
-			        Total Investido - R$ 1.000.000,00
-			      </a></li>
-			      
-			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-			        <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-			        Imposto de Renda Acumulado: R$ 1.000.000,00
-			      </a></li>
-			      
-			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-			        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-			        Restituição  R$ 1.000.000,00
-			      </a></li>
-			      
-			      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
-			        <span class="d-inline-block bg-info rounded-circle p-1"></span>
-			        Lucro Acumulado R$ 1.000.000,00
-			      </a></li>
-			  	
-			    </ul>
-			  </div>
+			INÍCIO DA COMPOSIÇÃO DE ATIVOS
+			<div class="col">
+		        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+		          <div class="card-header py-3 text-white bg-primary border-primary">
+		            <h4 class="my-0 fw-normal">Composição de Ativos</h4>
+		          </div>
+		          <div class="card-body">
+		            <h1 class="card-title pricing-card-title">Total dos Investimentos<br><small class="text-muted fw-light">R$ 9.453,04</small></h1>
+		            
+		            
+					
+		          </div>
+		        
+		        	<a class="btn btn-primary w-100 btn btn-lg" href="/wallet" role="button">Ir para Wallet</a>
+		        
+		        </div>
+		        
+		    </div>
+		      
+		      FINAL COMPOSIÇÃO ATIVOS
 			
-			<!-- <p>
-			  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-			    Fundos Imobiliários
-			  </button>
-			</p>
-			<div style="min-height: 120px;">
-			  <div class="collapse collapse-horizontal" id="collapseWidthExample">
-			    <div class="card card-body" style="width: 300px;">
-			      	
-			      	<ul class="list-unstyled mb-0">
-				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+		</main> -->
+		
+		<main>
+		
+		  <div class="container py-4">
+		    <!-- <header class="pb-3 mb-4 border-bottom">
+		      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+		        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+		        <span class="fs-4">Jumbotron example</span>
+		      </a>
+		    </header> -->
+		
+		    <div class="p-5 mb-4 bg-light rounded-3">
+		      <div class="container-fluid py-5">
+		        <h1 class="display-5 fw-bold">O que é a Plataforma Shinobi?</h1>
+		        <p class="col-md-8 fs-4">Shinobi é uma plataforma com o intuito de facilitar o gerenciamento e a 
+		        relação entre impostos nos investimentos do investidor relacionados ao mercado financeiro. </p>
+		        <button class="btn btn-primary btn-lg" type="button">Crie já sua conta</button>
+		      </div>
+		    </div>
+		
+		    <div class="row align-items-md-stretch">
+		      
+		      <div class="col-md-6">
+		        <div class="h-100 p-5 text-white bg-dark rounded-3">
+		          <h2>Arrojado</h2>
+		          <p>Investidor arrojado né? </p>
+		          <p>Deve ser complicado gerenciar todo esse patrimônio. Mitigue os riscos dos seus investimentos usando a plataforma.</p>
+		          <p>Grandes ofertas disponíveis para você.</p>
+		          <button class="btn btn-outline-light" type="button">Example button</button>
+		        </div>
+		      </div>
+		      
+		      <div class="col-md-6">
+		        <div class="h-100 p-5 bg-light border rounded-3">
+		          <h2>Conservador</h2>
+		          <p>Tranquilidade é o que você deseja?</p>
+		          <p>Além de investimentos seguros temos algumas opções para identificar as melhores oportunidades no mercado.</p>
+		          <p>Não perca tempo, acesse a plataforme e aproveite.</p>
+		          <button class="btn btn-outline-secondary" type="button">Example button</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		    
+		    <div class="p-5 mb-4 bg-light rounded-3 mt-4 bg-dark rounded-3 dropdown-menu-dark">
+		      <div class="container-fluid py-5">
+		        <h1 class="display-5 fw-bold text-white">Investimentos Populares</h1>
+		        <ul class="list-unstyled mb-0">
+				      
+				 
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 text-white" href="#">
 				        <span class="d-inline-block bg-success rounded-circle p-1"></span>
-				        Action
+				        Ações
 				      </a></li>
-				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 text-white" href="#">
 				        <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-				        Another action
+				        Fundos Imobiliários
 				      </a></li>
-				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 text-white" href="#">
 				        <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-				        Something else here
+				        Criptomoedas
 				      </a></li>
-				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 text-white" href="#">
 				        <span class="d-inline-block bg-info rounded-circle p-1"></span>
-				        Separated link
+				        Renda Fixa
 				      </a></li>
-				    </ul>
-				    
-			    </div>
-			  </div>
-			</div> -->
-			
-			<!-- <p>
-			  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-			    Link with href
-			  </a>
-			  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-			    Button with data-bs-target
-			  </button>
-			</p>
-			
-			<div class="collapse" id="collapseExample">
-			  	<div class="card card-body">
-			    	Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-			  	</div>
-			</div> -->
-			
-		</div>
-	
-	</div>
+				      <li><a class="dropdown-item d-flex align-items-center gap-2 py-2 text-white" href="#">
+				        <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+				        Tesouro Direto
+				      </a></li>
+			    </ul>
+		      </div>
+		    
+		  </div>
+		  
+		</main>
 	
 	<div th:replace="~{layout :: footer}"/>
+	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+  	<script src="/js/highcharts.js"></script>
+  	<script type="text/javascript" src="/js/themes/gray.js"></script>
 	
 </body>
 </html>
