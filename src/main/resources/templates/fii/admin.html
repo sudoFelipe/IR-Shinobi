@@ -3,51 +3,68 @@
 <html>
 	<head th:replace="~{layout :: head}"></head>
 	
-	<body>
+	<body class="bg-success">
 	
 		<div th:replace="~{layout :: menu}"></div>
 		
 		<div class="container">
 	
-			<div class="jumbotron">
-				<h1 class="display-4">Administrador de FII's</h1>
-				<p class="lead">Movimentações dos Fundos Imobiliários.</p>
-				<a class="btn btn-success" href="/fii/cadastro" role="button">Adicionar Novo Aporte</a>
+			<div class="jumbotron mt-3">
+				<h1 class="display-4 title">Administrador de FII's</h1>
+				<p class="lead letters">Movimentações dos Fundos Imobiliários.</p>
+				<a class="btn btn btn-outline-light" th:href="@{/fii/cadastro}" role="button">Adicionar Novo Aporte</a>
 				<hr class="my-4">
+			</div>
+	
+			<div class="col">
+		    	<div class="card mb-4 rounded-3 shadow-sm border-dark">
+			        	
+		        	<div class="card-header py-3 bg-success-light border-dark">
+		            	<h4 class="my-0 fw-normal title">Composição de Ativos</h4>
+		          	</div>
+		          
+		          	<div class="card-body p-0 m-0">
+		            
+		            	<table class="table table-success table-striped m-0">
+				  
+						  <thead>
+						    <tr class="table-info">
+						      <th scope="col">Id</th>
+						      <th scope="col">FII</th>
+						      <th scope="col">Gestora</th>
+						      <th scope="col">Valor Unitário</th>
+						      <th scope="col"><span class="badge bg-primary rounded-pill">Quantidade</span></th>
+						      <th scope="col">Valor Total</th>
+						      <th scope="col">Período Movimentação</th>
+						    </tr>
+						  </thead>
+						  
+						  <tbody>
+						    
+						    <tr th:each="fii : ${list}">
+						      <th scope="row" th:text="${fii.id}"></th>
+						      <td th:text="${fii.nome}"></td>
+						      <td th:text="${fii.gestora}"></td>
+						      <td th:text="${#numbers.formatCurrency(fii.valor)}"></td>
+						      
+						      <td><span th:classappend="${fii.movimentacao.name()} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${fii.quantidade}"></span></td>
+						      
+						      <td th:text="${#numbers.formatCurrency(fii.total)}"></td>
+						      <td th:text="${#temporals.format(fii.dataMovimentacao, 'dd/MM/yyyy')}"></td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+		        
+		    		</div>
+	
+				</div>
+			
 			</div>
 	
 			<div>
 				
-				<table class="table table-striped table-dark">
-				  
-				  <thead>
-				    <tr class="table-info">
-				      <th scope="col">Id</th>
-				      <th scope="col">FII</th>
-				      <th scope="col">Gestora</th>
-				      <th scope="col">Valor Unitário</th>
-				      <th scope="col"><span class="badge bg-primary rounded-pill">Quantidade</span></th>
-				      <th scope="col">Valor Total</th>
-				      <th scope="col">Período Movimentação</th>
-				    </tr>
-				  </thead>
-				  
-				  <tbody>
-				    
-				    <tr th:each="fii : ${list}">
-				      <th scope="row" th:text="${fii.id}"></th>
-				      <td th:text="${fii.nome}"></td>
-				      <td th:text="${fii.gestora}"></td>
-				      <td th:text="${#numbers.formatCurrency(fii.valor)}"></td>
-				      
-				      <td><span th:classappend="${fii.movimentacao.name()} == 'COMPRA' ? 'bg-primary' : 'bg-danger'" class="badge rounded-pill" th:text="${fii.quantidade}"></span></td>
-				      
-				      <td th:text="${#numbers.formatCurrency(fii.total)}"></td>
-				      <td th:text="${#temporals.format(fii.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-				    </tr>
-				    
-				  </tbody>
-				</table>
+				
 				
 			</div>
 	

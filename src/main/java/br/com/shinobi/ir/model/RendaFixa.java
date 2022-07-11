@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.shinobi.ir.dto.RequestRendaFixa;
 import br.com.shinobi.ir.enums.EnumMovimentacao;
 import lombok.Getter;
@@ -30,6 +32,7 @@ public class RendaFixa {
 	@Getter @Setter private EnumMovimentacao movimentacao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore	
 	@Getter @Setter private Usuario user;
 	
 	public void toRendaFixa(RequestRendaFixa dados) {

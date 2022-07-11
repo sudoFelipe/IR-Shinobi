@@ -9,13 +9,14 @@
 		
 		<div class="container">
 		
-			<div class="jumbotron mb-3">
-			  <h1 class="display-4">Cadastro de Ações</h1>
-			  <p class="lead">Cadastre o aporte das sua ações.</p>
-			  <hr class="my-4">
+			<div class="jumbotron m-3">
+			  <h1 class="display-4 title">Cadastro de Ações</h1>
+			  <p class="lead letters">Cadastre o seu aporte.</p>
 			</div>
 		
-			<form action="/acao/registro" th:object="${requestAcao}" method="POST">
+			<hr class="my-4">
+		
+			<form th:action="@{/acao/registro}" th:object="${requestAcao}" method="POST">
 			
 			  <div class="form-row">
 			    

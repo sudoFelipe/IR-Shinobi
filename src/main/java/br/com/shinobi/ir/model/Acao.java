@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.shinobi.ir.dto.RequestAcao;
 import br.com.shinobi.ir.enums.EnumMovimentacao;
 import lombok.Getter;
@@ -37,6 +39,7 @@ public class Acao {
 	@Getter @Setter private LocalDate dataMovimentacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore	
 	@Getter @Setter private Usuario user;
 	
 	public void toAcao(RequestAcao dados) {

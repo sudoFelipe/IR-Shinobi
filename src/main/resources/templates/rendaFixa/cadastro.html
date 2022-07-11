@@ -9,13 +9,15 @@
 		
 		<div class="container">
 		
-			<div class="jumbotron mb-3">
-			  <h1 class="display-4">Cadastro de Investimento em Renda Fixa</h1>
-			  <p class="lead">Cadastre o aporte feito em renda fixa.</p>
-			  <hr class="my-4">
+			<div class="jumbotron m-3">
+			  <h1 class="display-4 title">Cadastro de Investimento em Renda Fixa</h1>
+			  <p class="lead letters">Cadastre o aporte feito em renda fixa.</p>
+			  
 			</div>
 		
-			<form action="/rendaFixa/registro" th:object="${requestRendaFixa}" method="POST">
+			<hr class="my-4">
+		
+			<form th:action="@{/rendaFixa/registro}" th:object="${requestRendaFixa}" method="POST">
 			
 			  <div class="form-row">
 			    

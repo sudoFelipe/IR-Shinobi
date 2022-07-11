@@ -9,11 +9,12 @@
 		
 		<div class="container">
 		
-			<div class="jumbotron mb-3">
-			  <h1 class="display-4">Cadastro de Fundos Imobiliários</h1>
-			  <p class="lead">Cadastre o aporte feito no fundo imobiliário.</p>
-			  <hr class="my-4">
+			<div class="jumbotron m-3">
+			  <h1 class="display-4 title">Cadastro de Fundos Imobiliários</h1>
+			  <p class="lead letters">Cadastre o aporte feito no fundo imobiliário.</p>
 			</div>
+		
+			<hr class="my-4">
 		
 			<form th:action="@{/fii/registro}" th:object="${requestFII}" method="POST">
 			

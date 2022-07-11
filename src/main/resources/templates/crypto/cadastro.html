@@ -10,12 +10,12 @@
 		<div class="container">
 		
 			<div class="jumbotron mb-3">
-			  <h1 class="display-4">Cadastro de Criptomoedas</h1>
-			  <p class="lead">Cadastre o aporte feito em criptomoedas.</p>
+			  <h1 class="display-4 title">Cadastro de Criptomoedas</h1>
+			  <p class="lead letters">Cadastre o aporte feito em criptomoedas.</p>
 			  <hr class="my-4">
 			</div>
 		
-			<form action="/crypto/registro" th:object="${requestCrypto}" method="POST">
+			<form th:action="@{/crypto/registro}" th:object="${requestCrypto}" method="POST">
 			
 			  <div class="form-row">
 			    

@@ -3,7 +3,7 @@
 <html>
 <head th:replace="~{layout :: head}"></head>
 
-<body>
+<body class="bg-success">
 	
 	<div th:replace="~{layout :: menu}"></div>
 
@@ -35,11 +35,11 @@
 			<!-- INÍCIO DA COMPOSIÇÃO DE ATIVOS -->
 			<div class="col">
 		        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-		          <div class="card-header py-3 text-white bg-primary border-primary">
-		            <h4 class="my-0 fw-normal">Composição de Ativos</h4>
+		          <div class="card-header py-3 bg-success-light border-primary">
+		            <h4 class="my-0 fw-normal title">Composição de Ativos</h4>
 		          </div>
 		          <div class="card-body">
-		            <h1 class="card-title pricing-card-title">Total dos Investimentos<br><small class="text-muted fw-light">R$ 9.453,04</small></h1>
+		            <h1 class="card-title pricing-card-title title">Total dos Investimentos<br><small class="text-muted fw-light letters">R$ 9.453,04</small></h1>
 		            
 		            <div class="d-flex gap-5 justify-content-center">
 		
@@ -141,8 +141,6 @@
 					</div>
 					
 		          </div>
-		        
-		        	<a class="btn btn-primary w-100 btn btn-lg" href="/wallet" role="button">Ir para Wallet</a>
 		        
 		        </div>
 		        

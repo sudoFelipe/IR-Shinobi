@@ -9,13 +9,14 @@
 		
 		<div class="container">
 		
-			<div class="jumbotron mb-3">
-			  <h1 class="display-4">Cadastro de Títulos Públicos</h1>
-			  <p class="lead">Cadastre o aporte feito em títulos públicos.</p>
-			  <hr class="my-4">
+			<div class="jumbotron m-3">
+			  <h1 class="display-4 title">Cadastro de Títulos Públicos</h1>
+			  <p class="lead letters">Cadastre o aporte feito em títulos públicos.</p>
 			</div>
 		
-			<form action="/tesouro/registro" th:object="${requestTesouroDireto}" method="POST">
+			<hr class="my-4">
+		
+			<form th:action="@{/tesouro/registro}" th:object="${requestTesouroDireto}" method="POST">
 			
 			  <div class="form-row">
 			    

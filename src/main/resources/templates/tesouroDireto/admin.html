@@ -3,46 +3,57 @@
 <html>
 	<head th:replace="~{layout :: head}"></head>
 	
-	<body>
+	<body class="bg-success">
 	
 		<div th:replace="~{layout :: menu}"></div>
 		
 		<div class="container">
 	
-			<div class="jumbotron">
-				<h1 class="display-4">Administrador de Títulos Públicos</h1>
-				<p class="lead">Movimentações dos investimentos em títulos públicos.</p>
-				<a class="btn btn-success" href="/tesouro/cadastro" role="button">Adicionar Novo Aporte</a>
+			<div class="jumbotron mt-3">
+				<h1 class="display-4 title">Administrador de Títulos Públicos</h1>
+				<p class="lead letters">Movimentações dos investimentos em títulos públicos.</p>
+				<a class="btn btn-outline-light" th:href="@{/tesouro/cadastro}" role="button">Adicionar Novo Aporte</a>
 				<hr class="my-4">
 			</div>
 	
-			<div>
-				
-				<table class="table table-striped table-dark">
+			<div class="col">
+		    	<div class="card mb-4 rounded-3 shadow-sm border-dark">
+			        	
+		        	<div class="card-header py-3 bg-success-light border-dark">
+		            	<h4 class="my-0 fw-normal title">Composição de Ativos</h4>
+		          	</div>
+		          
+		          	<div class="card-body p-0 m-0">
+		            
+		            	<table class="table table-success table-striped m-0">
 				  
-				  <thead>
-				    <tr class="table-info">
-				      <th scope="col">Id</th>
-				      <th scope="col">Título</th>
-				      <th scope="col">Vencimento</th>
-				      <th scope="col">Valor</th>
-				      <th scope="col">Período Movimentação</th>
-				    </tr>
-				  </thead>
-				  
-				  <tbody>
-				    
-				    <tr th:each="td : ${list}">
-				      <th scope="row" th:text="${td.id}"></th>
-				      <td th:text="${td.nome}"></td>
-				      <td th:text="${#temporals.format(td.vencimento, 'dd/MM/yyyy')}"></td>
-				      <td th:text="${#numbers.formatCurrency(td.valor)}"></td>
-				      <td th:text="${#temporals.format(td.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-				    </tr>
-				    
-				  </tbody>
-				</table>
-				
+						  <thead>
+						    <tr class="table-info">
+						      <th scope="col">Id</th>
+						      <th scope="col">Título</th>
+						      <th scope="col">Vencimento</th>
+						      <th scope="col">Valor</th>
+						      <th scope="col">Período Movimentação</th>
+						    </tr>
+						  </thead>
+						  
+						  <tbody>
+						    
+						    <tr th:each="td : ${list}">
+						      <th scope="row" th:text="${td.id}"></th>
+						      <td th:text="${td.nome}"></td>
+						      <td th:text="${#temporals.format(td.vencimento, 'dd/MM/yyyy')}"></td>
+						      <td th:text="${#numbers.formatCurrency(td.valor)}"></td>
+						      <td th:text="${#temporals.format(td.dataMovimentacao, 'dd/MM/yyyy')}"></td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+		        
+		    		</div>
+	
+				</div>
+			
 			</div>
 	
 		</div>
