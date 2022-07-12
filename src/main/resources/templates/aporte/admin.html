@@ -1,0 +1,183 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head th:replace="~{layout :: head}"></head>
+
+<body class="bg-success" onload="onLoad()">
+	
+	<div th:replace="~{layout :: menu}"></div>
+
+	<!-- COMPLETE PAGE -->
+	<div class="container" id="aporte">
+
+		<div class="jumbotron m-3">
+		  <h1 class="display-4 title">Aporte Mensal</h1>
+		  <p class="lead letters">Monte o aporte e a diversificação da sua carteira.</p>
+		</div>
+	
+		<hr class="my-4">
+	
+		<form th:action="@{/}" th:object="${requestAporte}" method="POST">
+		
+		  <div class="form-row">
+		    
+		    <!-- AÇÕES -->
+		    <div class="row align-items-center ">
+			    
+			    <div class="col justify-content-center m-3">
+					<a class="btn btn-outline-light dropdown-toggle" data-bs-toggle="collapse" href="#collapseAcao" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    <i class="bi bi-bar-chart-fill me-2"></i>
+					    Adicionar Percentual Ações
+				  	</a>
+				</div>
+			    
+			    <div class="col justify-content-center">
+			    	
+			    	<div class="collapse" id="collapseAcao">
+						<label for="customRange1" class="form-label title text-white">Porcentagem da Carteira: 0%</label>
+						<div class="form-range">
+							<input type="range" class="form-range" min="0" max="100" id="customRange1" />
+						</div>
+					</div>
+			    
+			    </div>
+			   
+			    
+			</div>
+		    
+		    <hr class="my-4">
+		    
+		    <!-- FUNDOS IMOBILIÁRIOS -->
+		    <div class="row align-items-center ">
+			    
+			    <div class="col justify-content-center m-3">
+					<a class="btn btn-outline-light dropdown-toggle" data-bs-toggle="collapse" href="#collapseFii" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    <i class="bi bi-bar-chart-fill me-2"></i>
+					    Adicionar Percentual Fundos Imobiliários
+				  	</a>
+				</div>
+			    
+			    <div class="col justify-content-center">
+			    	
+			    	<div class="collapse" id="collapseFii">
+						<label for="customRange1" class="form-label title text-white">Porcentagem da Carteira: 0%</label>
+						<div class="form-range">
+							<input type="range" class="form-range" min="0" max="100" id="customRange1" />
+						</div>
+					</div>
+			    
+			    </div>
+			   
+			    
+			</div>
+		    
+		    <hr class="my-4">
+		    
+		    <!-- CRYPTO -->
+		    <div class="row align-items-center ">
+			    
+			    <div class="col justify-content-center m-3">
+					<a class="btn btn-outline-light dropdown-toggle" data-bs-toggle="collapse" href="#collapseCrypto" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    <i class="bi bi-bar-chart-fill me-2"></i>
+					    Adicionar Percentual Criptomoedas
+				  	</a>
+				</div>
+			    
+			    <div class="col justify-content-center">
+			    	
+			    	<div class="collapse" id="collapseCrypto">
+						<label for="customRange1" class="form-label title text-white">Porcentagem da Carteira: 0%</label>
+						<div class="form-range">
+							<input type="range" class="form-range" min="0" max="100" id="customRange1" />
+						</div>
+					</div>
+			    
+			    </div>
+			   
+			    
+			</div>
+		    
+		    <hr class="my-4">
+		    
+		    <!-- RENDA FIXA -->
+		    <div class="row align-items-center ">
+			    
+			    <div class="col justify-content-center m-3">
+					<a class="btn btn-outline-light dropdown-toggle" data-bs-toggle="collapse" href="#collapseRF" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    <i class="bi bi-bar-chart-fill me-2"></i>
+					    Adicionar Percentual Renda Fixa
+				  	</a>
+				</div>
+			    
+			    <div class="col justify-content-center">
+			    	
+			    	<div class="collapse" id="collapseRF">
+						<label for="customRange1" class="form-label title text-white">Porcentagem da Carteira: 0%</label>
+						<div class="form-range">
+							<input type="range" class="form-range" min="0" max="100" id="customRange1" />
+						</div>
+					</div>
+			    
+			    </div>
+			   
+			    
+			</div>
+		    
+		    <hr class="my-4">
+		    
+		    <!-- TESOURO DIRETO -->
+		    <div class="row align-items-center ">
+			    
+			    <div class="col justify-content-center m-3">
+					<a class="btn btn-outline-light dropdown-toggle" data-bs-toggle="collapse" href="#collapseTD" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    <i class="bi bi-bar-chart-fill me-2"></i>
+					    Adicionar Percentual Tesouro Direto
+				  	</a>
+				</div>
+			    
+			    <div class="col justify-content-center">
+			    	
+			    	<div class="collapse" id="collapseTD">
+						<label for="customRange1" class="form-label title text-white">Porcentagem da Carteira: 0%</label>
+						<div class="form-range">
+							<input type="range" class="form-range" min="0" max="100" id="customRange1" />
+						</div>
+					</div>
+			    
+			    </div>
+			   
+			    
+			</div>
+		    
+		    <hr class="my-4">
+		    
+		  </div>
+		  
+		  <button class="btn btn-dark m-3" type="submit">Montar Aporte</button>
+		
+		</form>
+	
+	</div>
+	
+	<div th:replace="~{layout :: footer}"/>
+	
+	<script>
+		
+		function onLoad() {
+			var app = new Vue({
+				el: '#aporte',
+				data: {
+					aportes: []
+				}, 
+				mounted() {
+					axios
+					.get('https://api/fiis/lista')
+					.then(response => (this.aportes = response.data))
+				}
+			})
+		}
+		
+	</script>
+	
+</body>
+</html>
