@@ -3,33 +3,32 @@
 <html>
 <head th:replace="~{layout :: head}"></head>
 
-<body class="bg-success">
-	
+<body class="bg-success" onload="onLoad()">
+
 	<div th:replace="~{layout :: menu}"></div>
 
 	<!-- COMPLETE PAGE -->
-	<div class="container">
-		
+	<div class="container" id="wallet">
+
 		<!-- MAIN -->
-		<main class="m-3">
-			
-			<script src="https://code.highcharts.com/highcharts.js"></script>
-		  	<script src="/js/highcharts.js"></script>
-		  	<script type="text/javascript" src="/js/themes/gray.js"></script>
-			
-			<!-- INÍCIO DA COMPOSIÇÃO DE ATIVOS -->
-			<div class="col">
-		        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-		          <div class="card-header py-3 bg-success-light border-primary">
-		            <h4 class="my-0 fw-normal title">Composição de Ativos</h4>
-		          </div>
-		          <div class="card-body">
-		            <h1 class="card-title pricing-card-title title">Total dos Investimentos<br><small class="text-muted fw-light letters">R$ 9.453,04</small></h1>
-		            
-		            <div class="d-flex gap-5 justify-content-center">
-		
-						<div id="container" style="width:100%; height:250px;">
-					  
+		<main class="m-3"> <script
+			src="https://code.highcharts.com/highcharts.js"></script> <script
+			src="/js/highcharts.js"></script> <!-- INÍCIO DA COMPOSIÇÃO DE ATIVOS -->
+		<div class="col">
+			<div class="card mb-4 rounded-3 shadow-sm border-primary">
+				<div class="card-header py-3 bg-success-light border-primary">
+					<h4 class="my-0 fw-normal title">Composição de Ativos</h4>
+				</div>
+				<div class="card-body">
+					<h1 class="card-title pricing-card-title title">
+						Total dos Investimentos<br>
+						<small class="text-muted fw-light letters">R$ {{wallets.totalCarteira}}</small>
+					</h1>
+
+					<div class="d-flex gap-5 justify-content-center">
+
+						<div id="container" style="width: 100%; height: 250px;">
+
 							<script>
 						  
 							  // Radialize the colors
@@ -120,250 +119,270 @@
 							  });
 						  
 						  </script>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- FINAL COMPOSIÇÃO ATIVOS --> <!-- INÍCIO LISTAGEM DE ATIVOS CARTEIRA -->
+		<div
+			class="p-3 mb-4 bg-light rounded-3 mt-4 bg-dark rounded-3 dropdown-menu-dark">
+			<div class="container-fluid py-5">
+				<h1 class="display-10 fw-bold text-white title mb-3">Wallet -
+					Investimentos</h1>
+				<ul class="list-unstyled mb-0">
+
+					<!-- AÇÕES -->
+					<div class="col justify-content-center m-2">
+						<a
+							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
+							data-bs-toggle="collapse" href="#collapseAcao" role="button"
+							aria-expanded="false" aria-controls="collapseExample"> <i
+							class="bi bi-bar-chart-fill me-2"></i> Ações Brasileiras
+						</a>
+					</div>
+
+					<div class="col justify-content-center m-3">
+
+						<div class="collapse" id="collapseAcao">
+							<div class="card-body p-0 m-0">
+
+								<table class="table table-secondary table-striped m-0">
+
+									<thead>
+										<tr class="table-dark">
+											<th scope="col" class="letters">Ticker</th>
+											<th scope="col" class="letters">Quantidade</th>
+											<th scope="col" class="letters">Preço Médio</th>
+											<th scope="col" class="letters">Valor Total</th>
+											<th scope="col" class="letters">Percentual da Carteira</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										<tr v-for="wal in wallets.acao">
+											<th scope="row" class="letters">{{wal.ticker}}</th>
+											<td class="letters">{{wal.quantidade}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+											<td class="letters">{{wal.total}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+										</tr>
+
+									</tbody>
+									
+								</table>
+
+							</div>
+						</div>
+
+					</div>
+					<!-- AÇÕES -->
 					
+					<!-- FII's -->
+					<div class="col justify-content-center m-2">
+						<a
+							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
+							data-bs-toggle="collapse" href="#collapseFii" role="button"
+							aria-expanded="false" aria-controls="collapseExample"> <i
+							class="bi bi-bar-chart-fill me-2"></i> Fundos Imobiliários
+						</a>
+					</div>
+
+					<div class="col justify-content-center m-3">
+
+						<div class="collapse" id="collapseFii">
+							<div class="card-body p-0 m-0">
+
+								<table class="table table-secondary table-striped m-0">
+
+									<thead>
+										<tr class="table-dark">
+											<th scope="col" class="letters">Ticker</th>
+											<th scope="col" class="letters">Quantidade</th>
+											<th scope="col" class="letters">Preço Médio</th>
+											<th scope="col" class="letters">Valor Total</th>
+											<th scope="col" class="letters">Percentual da Carteira</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										<tr v-for="wal in wallets.acao">
+											<th scope="row" class="letters">{{wal.ticker}}</th>
+											<td class="letters">{{wal.quantidade}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+											<td class="letters">{{wal.total}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+										</tr>
+
+									</tbody>
+									
+								</table>
+
+							</div>
 						</div>
+
+					</div>
+					<!-- FII's -->
 					
+					<!-- Crypto -->
+					<div class="col justify-content-center m-2">
+						<a
+							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
+							data-bs-toggle="collapse" href="#collapseCrypto" role="button"
+							aria-expanded="false" aria-controls="collapseExample"> <i
+							class="bi bi-bar-chart-fill me-2"></i> Criptomoedas
+						</a>
 					</div>
+
+					<div class="col justify-content-center m-3">
+
+						<div class="collapse" id="collapseCrypto">
+							<div class="card-body p-0 m-0">
+
+								<table class="table table-secondary table-striped m-0">
+
+									<thead>
+										<tr class="table-dark">
+											<th scope="col" class="letters">Ticker</th>
+											<th scope="col" class="letters">Quantidade</th>
+											<th scope="col" class="letters">Preço Médio</th>
+											<th scope="col" class="letters">Valor Total</th>
+											<th scope="col" class="letters">Percentual da Carteira</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										<tr v-for="wal in wallets.acao">
+											<th scope="row" class="letters">{{wal.ticker}}</th>
+											<td class="letters">{{wal.quantidade}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+											<td class="letters">{{wal.total}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+										</tr>
+
+									</tbody>
+									
+								</table>
+
+							</div>
+						</div>
+
+					</div>
+					<!-- Crypto -->
 					
-		          </div>
-		        
-		        </div>
-		        
-		      </div>
-		    <!-- FINAL COMPOSIÇÃO ATIVOS -->
-		      
-		    <!-- INÍCIO LISTAGEM DE ATIVOS CARTEIRA -->
-		    <div class="p-3 mb-4 bg-light rounded-3 mt-4 bg-dark rounded-3 dropdown-menu-dark">
-		   		<div class="container-fluid py-5">
-		        <h1 class="display-10 fw-bold text-white title mb-3">Wallet - Investimentos</h1>
-		        <ul class="list-unstyled mb-0">
-					 
-					 <!-- AÇÕES -->
-					 <div class="col justify-content-center m-2">
-						<a class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title" data-bs-toggle="collapse" href="#collapseAcao" role="button" aria-expanded="false" aria-controls="collapseExample">
-						    <i class="bi bi-bar-chart-fill me-2"></i>
-						    Ações Brasileiras
-					  	</a>
+					<!-- Renda Fixa -->
+					<div class="col justify-content-center m-2">
+						<a
+							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
+							data-bs-toggle="collapse" href="#collapseRF" role="button"
+							aria-expanded="false" aria-controls="collapseExample"> <i
+							class="bi bi-bar-chart-fill me-2"></i> Renda Fixa
+						</a>
 					</div>
-				    
-				     <div class="col justify-content-center m-3">
-				    	
-				    	<div class="collapse" id="collapseAcao">
+
+					<div class="col justify-content-center m-3">
+
+						<div class="collapse" id="collapseRF">
 							<div class="card-body p-0 m-0">
-		            
-				            	<table class="table table-success table-striped m-0">
-						  
-								  <thead>
-								    <tr class="table-info">
-								      <th scope="col">Ticker</th>
-								      <th scope="col">Quantidade</th>
-								      <th scope="col">Preço Médio</th>
-								      <th scope="col">Valor Total</th>
-								      <th scope="col">Percentual da Carteira</th>
-								    </tr>
-								  </thead>
-								  
-								  <tbody>
-								    
-								    <tr th:each="crypto : ${list}">
-								      <th scope="row" th:text="${crypto.id}"></th>
-								      <td th:text="${crypto.nome}"></td>
-								      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
-								      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-								    </tr>
-								    
-								  </tbody>
+
+								<table class="table table-secondary table-striped m-0">
+
+									<thead>
+										<tr class="table-dark">
+											<th scope="col" class="letters">Ticker</th>
+											<th scope="col" class="letters">Quantidade</th>
+											<th scope="col" class="letters">Preço Médio</th>
+											<th scope="col" class="letters">Valor Total</th>
+											<th scope="col" class="letters">Percentual da Carteira</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										<tr v-for="wal in wallets.acao">
+											<th scope="row" class="letters">{{wal.ticker}}</th>
+											<td class="letters">{{wal.quantidade}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+											<td class="letters">{{wal.total}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+										</tr>
+
+									</tbody>
+									
 								</table>
-				        
-				    		</div>
+
+							</div>
 						</div>
-				    
-				    </div>
-				    <!-- AÇÕES -->
-				    
-				    <!-- FUNDOS IMOBILIÁRIOS -->
-				    <div class="col justify-content-center m-2">
-						<a class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title" data-bs-toggle="collapse" href="#collapseFii" role="button" aria-expanded="false" aria-controls="collapseExample">
-						    <i class="bi bi-house-door-fill me-2"></i>
-						    Fundos Imobiliários
-					  	</a>
+
 					</div>
-				    
-				    <div class="col justify-content-center m-3">
-				    	
-				    	<div class="collapse" id="collapseFii">
-							<div class="card-body p-0 m-0">
-		            
-				            	<table class="table table-success table-striped m-0">
-						  
-								  <thead>
-								    <tr class="table-info">
-								      <th scope="col">Ticker</th>
-								      <th scope="col">Quantidade</th>
-								      <th scope="col">Preço Médio</th>
-								      <th scope="col">Valor Total</th>
-								      <th scope="col">Percentual da Carteira</th>
-								    </tr>
-								  </thead>
-								  
-								  <tbody>
-								    
-								    <tr th:each="crypto : ${list}">
-								      <th scope="row" th:text="${crypto.id}"></th>
-								      <td th:text="${crypto.nome}"></td>
-								      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
-								      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-								    </tr>
-								    
-								  </tbody>
-								</table>
-				        
-				    		</div>
-						</div>
-				    
-				    </div>
-				    <!-- FUNDOS IMOBILIÁRIOS -->
-				    
-				    <!-- CRYPTO -->
-				    <div class="col justify-content-center m-2">
-						<a class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title" data-bs-toggle="collapse" href="#collapseCrypto" role="button" aria-expanded="false" aria-controls="collapseExample">
-						    <i class="bi bi-currency-bitcoin me-2"></i>
-						    Criptomoedas
-					  	</a>
+					<!-- Renda Fixa -->
+					
+					<!-- Tesouro Direto -->
+					<div class="col justify-content-center m-2">
+						<a
+							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
+							data-bs-toggle="collapse" href="#collapseTD" role="button"
+							aria-expanded="false" aria-controls="collapseExample"> <i
+							class="bi bi-bar-chart-fill me-2"></i> Tesouro Direto
+						</a>
 					</div>
-				    
-				    <div class="col justify-content-center m-3">
-				    	
-				    	<div class="collapse" id="collapseCrypto">
+
+					<div class="col justify-content-center m-3">
+
+						<div class="collapse" id="collapseTD">
 							<div class="card-body p-0 m-0">
-		            
-				            	<table class="table table-success table-striped m-0">
-						  
-								  <thead>
-								    <tr class="table-info">
-								      <th scope="col">Ticker</th>
-								      <th scope="col">Quantidade</th>
-								      <th scope="col">Preço Médio</th>
-								      <th scope="col">Valor Total</th>
-								      <th scope="col">Percentual da Carteira</th>
-								    </tr>
-								  </thead>
-								  
-								  <tbody>
-								    
-								    <tr th:each="crypto : ${list}">
-								      <th scope="row" th:text="${crypto.id}"></th>
-								      <td th:text="${crypto.nome}"></td>
-								      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
-								      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-								    </tr>
-								    
-								  </tbody>
+
+								<table class="table table-secondary table-striped m-0">
+
+									<thead>
+										<tr class="table-dark">
+											<th scope="col" class="letters">Ticker</th>
+											<th scope="col" class="letters">Quantidade</th>
+											<th scope="col" class="letters">Preço Médio</th>
+											<th scope="col" class="letters">Valor Total</th>
+											<th scope="col" class="letters">Percentual da Carteira</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										<tr v-for="wal in wallets.acao">
+											<th scope="row" class="letters">{{wal.ticker}}</th>
+											<td class="letters">{{wal.quantidade}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+											<td class="letters">{{wal.total}}</td>
+											<td class="letters">{{wal.ticker}}</td>
+										</tr>
+
+									</tbody>
+									
 								</table>
-				        
-				    		</div>
+
+							</div>
 						</div>
-				    
-				    </div>
-				    <!-- CRYPTO -->
-				    
-				    <!-- RENDA FIXA -->
-				    <div class="col justify-content-center m-2">
-						<a class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title" data-bs-toggle="collapse" href="#collapseRF" role="button" aria-expanded="false" aria-controls="collapseExample">
-						    <i class="bi bi-bank2 me-2"></i>
-						    Renda Fixa
-					  	</a>
+
 					</div>
-				    
-				    <div class="col justify-content-center m-3">
-				    	
-				    	<div class="collapse" id="collapseRF">
-							<div class="card-body p-0 m-0">
-		            
-				            	<table class="table table-success table-striped m-0">
-						  
-								  <thead>
-								    <tr class="table-info">
-								      <th scope="col">Ticker</th>
-								      <th scope="col">Quantidade</th>
-								      <th scope="col">Preço Médio</th>
-								      <th scope="col">Valor Total</th>
-								      <th scope="col">Percentual da Carteira</th>
-								    </tr>
-								  </thead>
-								  
-								  <tbody>
-								    
-								    <tr th:each="crypto : ${list}">
-								      <th scope="row" th:text="${crypto.id}"></th>
-								      <td th:text="${crypto.nome}"></td>
-								      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
-								      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-								    </tr>
-								    
-								  </tbody>
-								</table>
-				        
-				    		</div>
-						</div>
-				    
-				    </div>
-				    <!-- RENDA FIXA -->
-				    
-				    <!-- TESOURO DIRETO -->
-				    <div class="col justify-content-center m-2">
-						<a class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title" data-bs-toggle="collapse" href="#collapseTD" role="button" aria-expanded="false" aria-controls="collapseExample">
-						    <i class="bi bi-wallet-fill me-2"></i>
-						    Tesouro Direto
-					  	</a>
-					</div>
-				    
-				    <div class="col justify-content-center m-3">
-				    	
-				    	<div class="collapse" id="collapseTD">
-							<div class="card-body p-0 m-0">
-		            
-				            	<table class="table table-success table-striped m-0">
-						  
-								  <thead>
-								    <tr class="table-info">
-								      <th scope="col">Ticker</th>
-								      <th scope="col">Quantidade</th>
-								      <th scope="col">Preço Médio</th>
-								      <th scope="col">Valor Total</th>
-								      <th scope="col">Percentual da Carteira</th>
-								    </tr>
-								  </thead>
-								  
-								  <tbody>
-								    
-								    <tr th:each="crypto : ${list}">
-								      <th scope="row" th:text="${crypto.id}"></th>
-								      <td th:text="${crypto.nome}"></td>
-								      <td th:text="${#numbers.formatCurrency(crypto.valor)}"></td>
-								      <td th:text="${#temporals.format(crypto.dataMovimentacao, 'dd/MM/yyyy')}"></td>
-								    </tr>
-								    
-								  </tbody>
-								</table>
-				        
-				    		</div>
-						</div>
-				    
-				    </div>
-				    <!-- TESOURO DIRETO -->
-				    
-			    </ul>
-		      </div>
-		    
-		  </div>
-		  
-		  
-		    
-	      	<!-- INÍCIO GRAFICO EVOLUÇÃO PATRIMONIAL -->
-		      <div id="container2" style="width:100%; height:300px;">
-		      	
-		      	<script>
+					<!-- Tesouro Direto -->
+
+				</ul>
+			</div>
+
+		</div>
+
+
+
+		<!-- INÍCIO GRAFICO EVOLUÇÃO PATRIMONIAL -->
+		<div id="container2" style="width: 100%; height: 300px;">
+
+			<script>
 		      	
 			      	Highcharts.chart('container2', {
 			      	    chart: {
@@ -424,15 +443,38 @@
 			      	});
 		      	
 		      	</script>
-		      	
-		      </div>
-		  	<!-- TÉRMINO EVOLUÇÃO PATRIMONIAL -->
-		  	
-		</main>
-	
+
+		</div>
+		<!-- TÉRMINO EVOLUÇÃO PATRIMONIAL --> </main>
+
 	</div>
+
+	<div th:replace="~{layout :: footer}" />
+
+	<script>
 	
-	<div th:replace="~{layout :: footer}"/>
-	
+		function onLoad() {
+	        var app = new Vue(
+       		{
+             		el: '#wallet',
+             		data: {
+               		wallets : []
+             		}, 
+				mounted () {
+           			axios
+                    .get('http://localhost:8080/api/wallet/geral')
+                    .then(response => (this.wallets = response.data))
+				}
+			});
+		}
+		
+	</script>
+
+	<!-- VUE.js -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+	<!-- AXIOS - BIBLIOTECA PARA CONSUMO DE API's -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </body>
 </html>

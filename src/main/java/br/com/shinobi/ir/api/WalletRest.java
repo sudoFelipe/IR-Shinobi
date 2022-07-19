@@ -1,6 +1,7 @@
 package br.com.shinobi.ir.api;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.shinobi.ir.model.Acao;
+import br.com.shinobi.ir.model.FII;
 import br.com.shinobi.ir.model.Wallet;
 import br.com.shinobi.ir.repository.AcaoRepository;
 import br.com.shinobi.ir.repository.CryptoRepository;
@@ -18,8 +21,8 @@ import br.com.shinobi.ir.repository.RendaFixaRepository;
 import br.com.shinobi.ir.repository.TesouroDiretoRepository;
 
 @RestController
-@RequestMapping("/api/fiis")
-public class FIIRest {
+@RequestMapping("/api/wallet")
+public class WalletRest {
 
 //	@Autowired
 //	private FIIRepository fiiRepo;
@@ -48,8 +51,8 @@ public class FIIRest {
 	@Autowired
 	private CryptoRepository cryptoRepository;
 	
-	@GetMapping("lista")
-	public Wallet getTodosFundos(Principal principal) {
+	@GetMapping("geral")
+	public Wallet getWallet(Principal principal) {
 		
 		Sort ordenacao = Sort.by("id").descending();
 		Pageable paginacao = PageRequest.of(0, 6, ordenacao);
@@ -64,4 +67,13 @@ public class FIIRest {
 		
 		return wallet;
 	}
+	
+//	@GetMapping("geral")
+//	public List<Acao> getWallet(Principal principal) {
+//		
+//		Sort ordenacao = Sort.by("id").descending();
+//		Pageable paginacao = PageRequest.of(0, 6, ordenacao);
+//		
+//		return acaoRepository.findAllByUsuario(principal.getName(), paginacao);
+//	}
 }
