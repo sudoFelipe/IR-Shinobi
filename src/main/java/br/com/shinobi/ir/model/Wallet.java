@@ -35,7 +35,7 @@ public class Wallet {
 	}
 
 	public Double getTotalCrypto() {
-		return td.stream().mapToDouble(td -> td.getValor()).sum();
+		return crypto.stream().mapToDouble(cpto -> cpto.getValor()).sum();
 	}
 	
 	public Double getTotalRF() {
@@ -43,6 +43,6 @@ public class Wallet {
 	}
 	
 	public Double getTotalTD() {
-		return crypto.stream().mapToDouble(crypto -> crypto.getValor()).sum();
+		return td.stream().mapToDouble(td -> td.getValor()).sum();
 	}
 }

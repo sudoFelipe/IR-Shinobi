@@ -8,13 +8,140 @@
 	<div th:replace="~{layout :: menu}"></div>
 
 	<!-- COMPLETE PAGE -->
-	<div class="container" id="wallet">
+	<div class="container">
 
 		<!-- MAIN -->
-		<main class="m-3"> <script
-			src="https://code.highcharts.com/highcharts.js"></script> <script
-			src="/js/highcharts.js"></script> <!-- INÍCIO DA COMPOSIÇÃO DE ATIVOS -->
-		<div class="col">
+		<main class="m-3"> 
+		
+		<div>
+		
+			<div class="card mb-4 rounded-3 shadow-sm border-success">
+				<div class="card-header py-3 bg-success-light border-success">
+					<h4 class="my-0 fw-normal title">Composição de Ativos</h4>
+				</div>
+				<div class="card-body">
+					<h1 class="card-title pricing-card-title title">
+						Total dos Investimentos<br>
+						<small class="text-muted fw-light letters" th:text="${#numbers.formatCurrency(totalWallet)}"></small>
+					</h1>
+
+					<div class="d-flex gap-5 justify-content-center">
+
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+
+						<div id="container" style="width: 100%; height: 250px;">
+
+							<script th:inline="javascript">
+							
+							var acao = /*[[${totalAcao}]]*/ 0;
+							var fii = /*[[${totalFii}]]*/ 0;
+							var crypto = /*[[${totalCrypto}]]*/ 0;
+							var td = /*[[${totalTD}]]*/ 0;
+							var rf = /*[[${totalRF}]]*/ 0;
+							
+							  // Radialize the colors
+							  Highcharts.setOptions({
+							      colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+							          return {
+							              radialGradient: {
+							                  cx: 0.5,
+							                  cy: 0.3,
+							                  r: 0.7
+							              },
+							              stops: [
+							                  [0, color],
+							                  [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+							              ]
+							          };
+							      })
+							  });
+							  
+							  
+							  
+								// Build the chart
+							  Highcharts.chart('container', {
+							      chart: {
+							          plotBackgroundColor: null,
+							          plotBorderWidth: null,
+							          plotShadow: false,
+							          type: 'pie'
+							      },
+							      title: {
+							          text: ''
+							      },
+							      tooltip: {
+							          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+							      },
+							      legend: {
+							    	    align: 'left',
+							    	    layout: 'vertical',
+							    	    verticalAlign: 'middle',
+							    	    x: 40,
+							    	    y: 0,
+							    	    padding: 3,
+							            itemMarginTop: 5,
+							            itemMarginBottom: 5,
+							            itemStyle: {
+							                lineHeight: '114px'
+							            }
+							      },
+							      accessibility: {
+							          point: {
+							              valueSuffix: '%'
+							          }
+							      },
+							      plotOptions: {
+							          pie: {
+							              allowPointSelect: true,
+							              cursor: 'pointer',
+							              dataLabels: {
+							                  enabled: false
+							              },
+							              showInLegend: true
+							          }
+							      },
+							      series: [{
+							          name: '% Carteira',
+							          colorByPoint: true,
+							          data: [{
+							              name: 'Tesouro Direto - [(${#numbers.formatCurrency(totalTD)})]',
+							              y: td
+							              /* ,
+							              sliced: true,
+							              selected: true */
+							          }, {
+							              name: 'Fundos Imobiliários - [(${#numbers.formatCurrency(totalFii)})]',
+							              y: fii
+							          }, {
+							              name: 'Ações  - [(${#numbers.formatCurrency(totalAcao)})]',
+							              y: acao
+							          }, {
+							              name: 'Criptomoedas  - [(${#numbers.formatCurrency(totalCrypto)})]',
+							              y: crypto
+							          }, {
+							              name: 'Renda Fixa  - [(${#numbers.formatCurrency(totalRF)})]',
+							              y: rf
+							          }]
+							      }]
+							  });
+						  
+						  </script>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		
+		</div>
+		
+		<!-- <script src="https://code.highcharts.com/highcharts.js"></script> 
+		<script src="/js/highcharts.js"></script>  -->
+		
+		<!-- INÍCIO DA COMPOSIÇÃO DE ATIVOS -->
+		<!-- <div class="col">
 			<div class="card mb-4 rounded-3 shadow-sm border-primary">
 				<div class="card-header py-3 bg-success-light border-primary">
 					<h4 class="my-0 fw-normal title">Composição de Ativos</h4>
@@ -128,14 +255,13 @@
 
 			</div>
 
-		</div>
+		</div> -->
+		
 		<!-- FINAL COMPOSIÇÃO ATIVOS --> <!-- INÍCIO LISTAGEM DE ATIVOS CARTEIRA -->
-		<div
-			class="p-3 mb-4 bg-light rounded-3 mt-4 bg-dark rounded-3 dropdown-menu-dark">
+		<div class="p-3 mb-4 bg-light rounded-3 bg-dark dropdown-menu-dark" id="wallet">
 			<div class="container-fluid py-5">
-				<h1 class="display-10 fw-bold text-white title mb-3">Wallet -
-					Investimentos</h1>
-				<ul class="list-unstyled mb-0">
+				<h1 class="display-10 fw-bold text-white title mb-3">My Wallet</h1>
+				<ul class="list-unstyled mb-0 p-5">
 
 					<!-- AÇÕES -->
 					<div class="col justify-content-center m-2">
@@ -152,26 +278,25 @@
 						<div class="collapse" id="collapseAcao">
 							<div class="card-body p-0 m-0">
 
-								<table class="table table-secondary table-striped m-0">
+								<table class="table table-info table-striped m-0 align-middle">
 
 									<thead>
 										<tr class="table-dark">
-											<th scope="col" class="letters">Ticker</th>
-											<th scope="col" class="letters">Quantidade</th>
-											<th scope="col" class="letters">Preço Médio</th>
-											<th scope="col" class="letters">Valor Total</th>
-											<th scope="col" class="letters">Percentual da Carteira</th>
+											<th scope="col" class="letters text-center">Empresa</th>
+											<th scope="col" class="letters text-center">Ticker</th>
+											<th scope="col" class="letters text-center">Quantidade</th>
+											<th scope="col" class="letters text-center">Valor Total</th>
+											<!-- <th scope="col" class="letters">Percentual da Carteira</th> -->
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<tr v-for="wal in wallets.acao">
-											<th scope="row" class="letters">{{wal.ticker}}</th>
-											<td class="letters">{{wal.quantidade}}</td>
-											<td class="letters">{{wal.ticker}}</td>
-											<td class="letters">{{wal.total}}</td>
-											<td class="letters">{{wal.ticker}}</td>
+										<tr v-for="acao in wallets.acao">
+											<th scope="row" class="letters text-center">{{acao.nome}}</th>
+											<td class="letters text-center">{{acao.ticker}}</td>
+											<td class="letters text-center">{{acao.quantidade}}</td>
+											<td class="letters text-center">{{ parseFloat.($variable).toFixed(2) }}</td>
 										</tr>
 
 									</tbody>
@@ -189,8 +314,8 @@
 						<a
 							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
 							data-bs-toggle="collapse" href="#collapseFii" role="button"
-							aria-expanded="false" aria-controls="collapseExample"> <i
-							class="bi bi-bar-chart-fill me-2"></i> Fundos Imobiliários
+							aria-expanded="false" aria-controls="collapseExample"> 
+							<i class="bi bi-house-door-fill me-2"></i> Fundos Imobiliários
 						</a>
 					</div>
 
@@ -199,26 +324,26 @@
 						<div class="collapse" id="collapseFii">
 							<div class="card-body p-0 m-0">
 
-								<table class="table table-secondary table-striped m-0">
+								<table class="table table-info table-striped m-0">
 
 									<thead>
 										<tr class="table-dark">
-											<th scope="col" class="letters">Ticker</th>
-											<th scope="col" class="letters">Quantidade</th>
-											<th scope="col" class="letters">Preço Médio</th>
-											<th scope="col" class="letters">Valor Total</th>
-											<th scope="col" class="letters">Percentual da Carteira</th>
+											<th scope="col" class="letters text-center">Nome</th>
+											<th scope="col" class="letters text-center">Ticker</th>
+											<th scope="col" class="letters text-center">Gestora</th>
+											<th scope="col" class="letters text-center">Quantidade</th>
+											<th scope="col" class="letters text-center">Valor Total</th>
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<tr v-for="wal in wallets.acao">
-											<th scope="row" class="letters">{{wal.ticker}}</th>
-											<td class="letters">{{wal.quantidade}}</td>
-											<td class="letters">{{wal.ticker}}</td>
-											<td class="letters">{{wal.total}}</td>
-											<td class="letters">{{wal.ticker}}</td>
+										<tr v-for="fii in wallets.fii">
+											<th scope="row" class="letters text-center">{{fii.nome}}</th>
+											<td class="letters text-center">{{fii.ticker}}</td>
+											<td class="letters text-center">{{fii.gestora}}</td>
+											<td class="letters text-center">{{fii.quantidade}}</td>
+											<td class="letters text-center">{{fii.total}}</td>
 										</tr>
 
 									</tbody>
@@ -236,8 +361,9 @@
 						<a
 							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
 							data-bs-toggle="collapse" href="#collapseCrypto" role="button"
-							aria-expanded="false" aria-controls="collapseExample"> <i
-							class="bi bi-bar-chart-fill me-2"></i> Criptomoedas
+							aria-expanded="false" aria-controls="collapseExample"> 
+							<i class="bi bi-currency-bitcoin me-2"></i>
+							Cripto Ativos
 						</a>
 					</div>
 
@@ -246,26 +372,22 @@
 						<div class="collapse" id="collapseCrypto">
 							<div class="card-body p-0 m-0">
 
-								<table class="table table-secondary table-striped m-0">
+								<table class="table table-info table-striped m-0">
 
 									<thead>
 										<tr class="table-dark">
-											<th scope="col" class="letters">Ticker</th>
-											<th scope="col" class="letters">Quantidade</th>
-											<th scope="col" class="letters">Preço Médio</th>
-											<th scope="col" class="letters">Valor Total</th>
-											<th scope="col" class="letters">Percentual da Carteira</th>
+											<th scope="col" class="letters text-center">Criptomoeda</th>
+											<th scope="col" class="letters text-center">Total</th>
+											<!-- <th scope="col" class="letters">Percentual da Carteira</th> -->
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<tr v-for="wal in wallets.acao">
-											<th scope="row" class="letters">{{wal.ticker}}</th>
-											<td class="letters">{{wal.quantidade}}</td>
-											<td class="letters">{{wal.ticker}}</td>
-											<td class="letters">{{wal.total}}</td>
-											<td class="letters">{{wal.ticker}}</td>
+										<tr v-for="crypto in wallets.crypto">
+											<th scope="row" class="letters text-center">{{crypto.nome}}</th>
+											<td class="letters text-center">{{crypto.valor}}</td>
+											<!-- <td class="letters">{{crypto.percentualCarteira}}</td> -->
 										</tr>
 
 									</tbody>
@@ -283,8 +405,9 @@
 						<a
 							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
 							data-bs-toggle="collapse" href="#collapseRF" role="button"
-							aria-expanded="false" aria-controls="collapseExample"> <i
-							class="bi bi-bar-chart-fill me-2"></i> Renda Fixa
+							aria-expanded="false" aria-controls="collapseExample"> 
+							<i class="bi bi-bank2 me-2"></i>
+							Investimentos de Renda Fixa
 						</a>
 					</div>
 
@@ -293,26 +416,23 @@
 						<div class="collapse" id="collapseRF">
 							<div class="card-body p-0 m-0">
 
-								<table class="table table-secondary table-striped m-0">
+								<table class="table table-info table-striped m-0">
 
 									<thead>
 										<tr class="table-dark">
-											<th scope="col" class="letters">Ticker</th>
-											<th scope="col" class="letters">Quantidade</th>
-											<th scope="col" class="letters">Preço Médio</th>
-											<th scope="col" class="letters">Valor Total</th>
-											<th scope="col" class="letters">Percentual da Carteira</th>
+											<th scope="col" class="letters text-center">Banco</th>
+											<th scope="col" class="letters text-center">Valor Investido</th>
+											<th scope="col" class="letters text-center">Vencimento</th>
+											<!-- <th scope="col" class="letters">Percentual da Carteira</th> -->
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<tr v-for="wal in wallets.acao">
-											<th scope="row" class="letters">{{wal.ticker}}</th>
-											<td class="letters">{{wal.quantidade}}</td>
-											<td class="letters">{{wal.ticker}}</td>
-											<td class="letters">{{wal.total}}</td>
-											<td class="letters">{{wal.ticker}}</td>
+										<tr v-for="rf in wallets.rf">
+											<th scope="row" class="letters text-center">{{rf.nome}}</th>
+											<td class="letters text-center">{{rf.valor}}</td>
+											<td class="letters text-center">{{rf.vencimento}}</td>
 										</tr>
 
 									</tbody>
@@ -330,8 +450,9 @@
 						<a
 							class="btn btn-outline-light dropdown-toggle dropdown-item p-3 title"
 							data-bs-toggle="collapse" href="#collapseTD" role="button"
-							aria-expanded="false" aria-controls="collapseExample"> <i
-							class="bi bi-bar-chart-fill me-2"></i> Tesouro Direto
+							aria-expanded="false" aria-controls="collapseExample"> 
+							<i class="bi bi-wallet-fill me-2"></i>
+							Títulos do Tesouro Direto
 						</a>
 					</div>
 
@@ -340,26 +461,23 @@
 						<div class="collapse" id="collapseTD">
 							<div class="card-body p-0 m-0">
 
-								<table class="table table-secondary table-striped m-0">
+								<table class="table table-success table-striped m-0">
 
 									<thead>
 										<tr class="table-dark">
-											<th scope="col" class="letters">Ticker</th>
-											<th scope="col" class="letters">Quantidade</th>
-											<th scope="col" class="letters">Preço Médio</th>
-											<th scope="col" class="letters">Valor Total</th>
-											<th scope="col" class="letters">Percentual da Carteira</th>
+											<th scope="col" class="letters text-center">Título</th>
+											<th scope="col" class="letters text-center">Valor Investido</th>
+											<th scope="col" class="letters text-center">Vencimento</th>
+											<!-- <th scope="col" class="letters">Percentual da Carteira</th> -->
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<tr v-for="wal in wallets.acao">
-											<th scope="row" class="letters">{{wal.ticker}}</th>
-											<td class="letters">{{wal.quantidade}}</td>
-											<td class="letters">{{wal.ticker}}</td>
-											<td class="letters">{{wal.total}}</td>
-											<td class="letters">{{wal.ticker}}</td>
+										<tr v-for="td in wallets.td">
+											<th scope="row" class="letters text-center">{{td.nome}}</th>
+											<td class="letters text-center">{{td.valor}}</td>
+											<td class="letters text-center">{{td.vencimento}}</td>
 										</tr>
 
 									</tbody>
@@ -377,75 +495,76 @@
 
 		</div>
 
+		
 
-
-		<!-- INÍCIO GRAFICO EVOLUÇÃO PATRIMONIAL -->
-		<div id="container2" style="width: 100%; height: 300px;">
-
-			<script>
-		      	
-			      	Highcharts.chart('container2', {
-			      	    chart: {
-			      	        type: 'column'
-			      	    },
-			      	    title: {
-			      	        text: 'Evolução Patrimonial'
-			      	    },
-			      	    subtitle: {
-			      	        text: 'Evolução dos Investimentos'
-			      	    },
-			      	    xAxis: {
-			      	        categories: [
-			      	            'Jan',
-			      	            'Fev',
-			      	            'Mar',
-			      	            'Abr',
-			      	            'Mai',
-			      	            'Jun',
-			      	            'Jul',
-			      	            'Ago',
-			      	            'Set',
-			      	            'Out',
-			      	            'Nov',
-			      	            'Dez'
-			      	        ],
-			      	        crosshair: true
-			      	    },
-			      	    yAxis: {
-			      	        min: 0,
-			      	        title: {
-			      	            text: 'Real (R$)'
-			      	        }
-			      	    },
-			      	    tooltip: {
-			      	        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-			      	        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name} : </td>' +
-			      	            		 '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
-			      	        footerFormat: '</table>',
-			      	        shared: true,
-			      	        useHTML: true
-			      	    },
-			      	    plotOptions: {
-			      	        column: {
-			      	            pointPadding: 0.2,
-			      	            borderWidth: 0
-			      	        }
-			      	    },
-			      	    series: [{
-			      	        name: '2022',
-			      	        data: [149,90, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6]
+			<!-- INÍCIO GRAFICO EVOLUÇÃO PATRIMONIAL
+			<div id="container2" style="width: 100%; height: 300px;">
 	
-			      	    }, {
-			      	        name: '2021',
-			      	        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+				<script>
+			      	
+				      	Highcharts.chart('container2', {
+				      	    chart: {
+				      	        type: 'column'
+				      	    },
+				      	    title: {
+				      	        text: 'Evolução Patrimonial'
+				      	    },
+				      	    subtitle: {
+				      	        text: 'Evolução dos Investimentos'
+				      	    },
+				      	    xAxis: {
+				      	        categories: [
+				      	            'Jan',
+				      	            'Fev',
+				      	            'Mar',
+				      	            'Abr',
+				      	            'Mai',
+				      	            'Jun',
+				      	            'Jul',
+				      	            'Ago',
+				      	            'Set',
+				      	            'Out',
+				      	            'Nov',
+				      	            'Dez'
+				      	        ],
+				      	        crosshair: true
+				      	    },
+				      	    yAxis: {
+				      	        min: 0,
+				      	        title: {
+				      	            text: 'Real (R$)'
+				      	        }
+				      	    },
+				      	    tooltip: {
+				      	        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				      	        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name} : </td>' +
+				      	            		 '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+				      	        footerFormat: '</table>',
+				      	        shared: true,
+				      	        useHTML: true
+				      	    },
+				      	    plotOptions: {
+				      	        column: {
+				      	            pointPadding: 0.2,
+				      	            borderWidth: 0
+				      	        }
+				      	    },
+				      	    series: [{
+				      	        name: '2022',
+				      	        data: [149,90, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6]
+		
+				      	    }, {
+				      	        name: '2021',
+				      	        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+		
+				      	    }]
+				      	});
+			      	
+			      	</script>
 	
-			      	    }]
-			      	});
-		      	
-		      	</script>
-
-		</div>
-		<!-- TÉRMINO EVOLUÇÃO PATRIMONIAL --> </main>
+			</div> -->
+		
+		</main>
 
 	</div>
 
